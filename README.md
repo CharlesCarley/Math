@@ -23,6 +23,13 @@ cmake ..
 make
 ```
 
+
+Optional defines
+
++ Math_SCALAR_DOUBLE - Define scalar type as double. Default:OFF (float)
+
+
+
 ## References
 
 Some portions have been derived from:

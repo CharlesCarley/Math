@@ -26,7 +26,7 @@
 
 void skMath::ortho2D(class skTransform2D& dest, skScalar l, skScalar t, skScalar r, skScalar b)
 {
-    skScalar dx = r - l, dy = t - b;
+    skScalar dx = r - l, dy = b - t;
 
     if (skIsZero(dx) || skIsZero(dy))
     {
@@ -50,7 +50,7 @@ void skMath::ortho2D(class skTransform2D& dest, skScalar l, skScalar t, skScalar
 
 void skMath::ortho2D(class skMatrix4& dest, skScalar l, skScalar t, skScalar r, skScalar b)
 {
-    skScalar dx = r - l, dy = t - b;
+    skScalar dx = r - l, dy = b - t;
 
     if (skIsZero(dx) || skIsZero(dy))
     {

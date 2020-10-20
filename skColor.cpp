@@ -22,18 +22,20 @@
 #include "skColor.h"
 
 
+const skColor skColor::White = skColor(1, 1, 1, 1);
+const skColor skColor::Black = skColor(0, 0, 0, 1);
+
 const skScalar skColorUtils::i100 = skScalar(1.0 / 100.0);
 const skScalar skColorUtils::i255 = skScalar(1.0 / 255.0);
 const skScalar skColorUtils::i360 = skScalar(1.0 / 360.0);
 
 
-// constants for rotating 
+// constants for rotating
 const skScalar i1 = skPiO3;
 const skScalar i2 = 2 * skPiO3;
 const skScalar i3 = 3 * skPiO3;
 const skScalar i4 = 4 * skPiO3;
 const skScalar i5 = 5 * skPiO3;
-
 
 
 void skColor::asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const
@@ -45,10 +47,10 @@ void skColor::asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const
 }
 
 
-
 void skColorUtils::convert(skColori& dst, const skColor& src)
 {
-    union {  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    union
+    {  // NOLINT(cppcoreguidelines-pro-type-member-init)
         unsigned char b[4];
         skColori      i;
     } color;
@@ -57,12 +59,13 @@ void skColorUtils::convert(skColori& dst, const skColor& src)
     color.b[2] = (unsigned char)(src.g * 255);
     color.b[1] = (unsigned char)(src.b * 255);
     color.b[0] = (unsigned char)(src.a * 255);
-    dst = color.i;
+    dst        = color.i;
 }
 
 void skColorUtils::convert(skColor& dst, const skColori& src)
 {
-    union {// NOLINT(cppcoreguidelines-pro-type-member-init)
+    union
+    {  // NOLINT(cppcoreguidelines-pro-type-member-init)
         unsigned char b[4];
         skColori      i;
     } color;
@@ -81,12 +84,12 @@ void skColorUtils::convert(skColor& dst, const skColorHSV& src)
 
 
     skScalar h, c, x, m;
-    h = src.h/skScalar(60.0);
+    h = src.h / skScalar(60.0);
 
     c = src.v * src.s;
     if (c > skScalar(1.0))
         c = skScalar(1.0);
-    
+
     x = c * (skScalar(1.0) - skAbs(skFmod(h, skScalar(2.0)) - skScalar(1.0)));
     m = src.v - c;
     if (m > skScalar(1.0))
@@ -124,7 +127,7 @@ void skColorUtils::convert(skColor& dst, const skColorHSV& src)
         dst.g = 0;
         dst.b = c;
     }
-    else 
+    else
     {
         dst.r = c;
         dst.g = 0;
@@ -151,7 +154,7 @@ void skColorUtils::convert(skColorHSV& dst, const skColor& src)
         dst.h = skPiO3 * ((src.g - src.b) / dst.a);
     else if (skEq(src.g, dst.v))
         dst.h = skPiO3 * (skScalar(2) + (src.b - src.r) / dst.a);
-    else 
+    else
         dst.h = skPiO3 * (skScalar(4) + (src.r - src.g) / dst.a);
 
     dst.h *= skDPR;

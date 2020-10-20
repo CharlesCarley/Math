@@ -283,6 +283,16 @@ public:
         return x >= x1 && x <= x2 && y >= y1 && y <= y2;
     }
 
+    SK_INLINE skScalar hx()
+    {
+        return x * skScalar(0.5);
+    }
+
+    SK_INLINE skScalar hy()
+    {
+        return y * skScalar(0.5);
+    }
+
     void constrainX(skScalar min, skScalar max)
     {
         if (x < min)

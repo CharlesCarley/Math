@@ -32,7 +32,6 @@ else()
 endif()
 
 set(Math_SRC
-    skBoundingBox.cpp
     skBoundingBox2D.cpp
     skRational.cpp
     skColor.cpp
@@ -43,8 +42,6 @@ set(Math_SRC
     skQuaternion.cpp
     skRandom.cpp
     skRectangle.cpp
-    skScalar.cpp
-    skTransform.cpp
     skTransform2D.cpp
     skVector2.cpp
     skVector3.cpp
@@ -52,7 +49,6 @@ set(Math_SRC
 )
 
 set(Math_HDR
-    skBoundingBox.h
     skBoundingBox2D.h
     skRational.h
     skColor.h
@@ -64,8 +60,6 @@ set(Math_HDR
     skQuaternion.h
     skRandom.h
     skRectangle.h
-    skScalar.h
-    skTransform.h
     skTransform2D.h
     skVector2.h
     skVector3.h

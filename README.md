@@ -1,6 +1,6 @@
 # Math
 
-Is A basic linear math library for 2D & 3D Graphics with OpenGL.
+Is a basic linear math library for 2D & 3D Graphics with OpenGL.
 
 ## Building
 

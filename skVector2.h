@@ -283,12 +283,12 @@ public:
         return x >= x1 && x <= x2 && y >= y1 && y <= y2;
     }
 
-    SK_INLINE skScalar hx()
+    SK_INLINE skScalar hx() const
     {
         return x * skScalar(0.5);
     }
 
-    SK_INLINE skScalar hy()
+    SK_INLINE skScalar hy() const
     {
         return y * skScalar(0.5);
     }
@@ -299,10 +299,6 @@ public:
             x = min;
         if (x > max)
             x = max;
-        if (y < min)
-            y = min;
-        if (y > max)
-            y = max;
     }
 
     void constrainY(skScalar min, skScalar max)

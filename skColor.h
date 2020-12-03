@@ -115,8 +115,6 @@ public:
     static const skColor White;
     static const skColor Black;
 
-
-
 public:
     skColor() :
         a(1)

@@ -26,6 +26,7 @@
 
 extern void         skRandInit(void);
 extern skScalar     skUnitRand(void);
+extern skScalar     skUnitNRand(void);
 extern SKint32      skRandIntRange(SKint32 rmi, SKint32 rma);
 
 #endif//_skRandom_h_

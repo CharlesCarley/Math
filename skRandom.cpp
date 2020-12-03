@@ -52,6 +52,11 @@ skScalar skUnitRand(void)
     return skScalar(rand()) / skScalar(RAND_MAX);
 }
 
+skScalar skUnitNRand(void)
+{
+    return 2.0 * skUnitRand() - 1.0;
+}
+
 SKint32 skRandIntRange(SKint32 rmi, SKint32 rma)
 {
     return SKint32((skScalar(rma) - skScalar(rmi)) * skUnitRand() + rmi);

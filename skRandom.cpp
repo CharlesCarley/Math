@@ -39,11 +39,10 @@ void skRandInit(void)
 #if SK_PLATFORM == SK_PLATFORM_WIN32
     sRandVal = (long)((ULONGLONG)GetTickCount64() % std::numeric_limits<long>::max());
 #else
-    static 	struct timeval now;
+    static struct timeval now;
     gettimeofday(&now, NULL);
     sRandVal = (now.tv_sec) / 1000;
 #endif
-
     srand(sRandVal);
 }
 
@@ -54,7 +53,7 @@ skScalar skUnitRand(void)
 
 skScalar skUnitNRand(void)
 {
-    return 2.0 * skUnitRand() - 1.0;
+    return skScalar(2.0) * skUnitRand() - skScalar(1.0);
 }
 
 SKint32 skRandIntRange(SKint32 rmi, SKint32 rma)

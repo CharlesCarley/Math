@@ -263,7 +263,7 @@ public:
         x1 = x;
         y1 = y;
         x2 = x + width;
-        y2 = (y + height);
+        y2 = y + height;
     }
 
     void getLocalBounds(skScalar& x1, skScalar& y1, skScalar& x2, skScalar& y2) const

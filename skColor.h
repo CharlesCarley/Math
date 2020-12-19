@@ -243,7 +243,7 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator+(skScalar r, const skColor& l)
+    friend SK_INLINE skColor operator+(const skScalar r, const skColor& l)
     {
         return l + r;
     }
@@ -274,7 +274,7 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator-(skScalar r, const skColor& l)
+    friend SK_INLINE skColor operator-(const skScalar r, const skColor& l)
     {
         return l - r;
     }

@@ -239,14 +239,14 @@ public:
     void normalize(void)
     {
         skScalar mag = length();
-        if (mag > 0.0)
+        if (mag > skScalar(0.0))
             *this /= mag;
     }
 
     skVector3 normalized(void) const
     {
         const skScalar mag = length();
-        if (mag > 0.0)
+        if (mag > skScalar(0.0))
             return skVector3(*this) / mag;
         return Zero;
     }

@@ -46,6 +46,12 @@ void skColor::asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const
     va = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(a * 255), 0, 255);
 }
 
+void skColor::asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const
+{
+    vr = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(r * 255), 0, 255);
+    vg = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(g * 255), 0, 255);
+    vb = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(b * 255), 0, 255);
+}
 
 void skColorUtils::convert(skColori& dst, const skColor& src)
 {

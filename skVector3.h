@@ -250,6 +250,7 @@ public:
             return skVector3(*this) / mag;
         return Zero;
     }
+    void print(void) const;
 
     skScalar x, y, z;
 

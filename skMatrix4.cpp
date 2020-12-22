@@ -20,12 +20,18 @@
 -------------------------------------------------------------------------------
 */
 #include "skMatrix4.h"
-#ifdef SK_MATH_DEBUG
-#include "Utils/skDebugger.h"
-#endif
+#include <cstdio>
 
 const skMatrix4 skMatrix4::Identity = skMatrix4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 const skMatrix4 skMatrix4::Zero     = skMatrix4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+void skMatrix4::print(void) const
+{
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[0][0], m[0][1], m[0][2], m[0][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[1][0], m[1][1], m[1][2], m[1][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[2][0], m[2][1], m[2][2], m[2][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[3][0], m[3][1], m[3][2], m[3][3]);
+}
 
 skMatrix4::skMatrix4(const skMatrix4& v)
 {
@@ -369,14 +375,4 @@ skMatrix4 skMatrix4::inverted() const
     r.m[3][3] = d * (m[0][1] * m[1][2] * m[2][0] - m[0][2] * m[1][1] * m[2][0] + m[0][2] * m[1][0] * m[2][1] - m[0][0] * m[1][2] * m[2][1] - m[0][1] * m[1][0] * m[2][2] + m[0][0] * m[1][1] * m[2][2]);
 
     return r;
-}
-
-void skMatrix4::print(void)
-{
-#ifdef SK_MATH_DEBUG
-    skPrintf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[0][0], m[0][1], m[0][2], m[0][3]);
-    skPrintf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[1][0], m[1][1], m[1][2], m[1][3]);
-    skPrintf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[2][0], m[2][1], m[2][2], m[2][3]);
-    skPrintf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[3][0], m[3][1], m[3][2], m[3][3]);
-#endif
 }

@@ -20,7 +20,7 @@
 -------------------------------------------------------------------------------
 */
 #include "skColor.h"
-
+#include <cstdio>
 
 const skColor skColor::White = skColor(1, 1, 1, 1);
 const skColor skColor::Black = skColor(0, 0, 0, 1);
@@ -38,25 +38,32 @@ const skScalar i4 = 4 * skPiO3;
 const skScalar i5 = 5 * skPiO3;
 
 
+void skColor::print() const
+{
+    SKuint8 r, g, b, a;
+    asInt8(r, g, b, a);
+    printf("#%02X%02X%02X%02X\n", r, g, b, a);
+}
+
 void skColor::asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const
 {
-    vr = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(r * 255), 0, 255);
-    vg = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(g * 255), 0, 255);
-    vb = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(b * 255), 0, 255);
-    va = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(a * 255), 0, 255);
+    vr = SKuint8(r * skScalar(255));
+    vg = SKuint8(g * skScalar(255));
+    vb = SKuint8(b * skScalar(255));
+    va = SKuint8(a * skScalar(255));
 }
 
 void skColor::asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const
 {
-    vr = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(r * 255), 0, 255);
-    vg = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(g * 255), 0, 255);
-    vb = skClamp<SKuint8>((SKuint8)(SKuint32)skCeil(b * 255), 0, 255);
+    vr = SKuint8(r * skScalar(255));
+    vg = SKuint8(g * skScalar(255));
+    vb = SKuint8(b * skScalar(255));
 }
 
 void skColorUtils::convert(skColori& dst, const skColor& src)
 {
     union
-    {  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    {  
         unsigned char b[4];
         skColori      i;
     } color;
@@ -71,7 +78,7 @@ void skColorUtils::convert(skColori& dst, const skColor& src)
 void skColorUtils::convert(skColor& dst, const skColori& src)
 {
     union
-    {  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    {  
         unsigned char b[4];
         skColori      i;
     } color;

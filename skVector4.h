@@ -79,6 +79,8 @@ public:
         return !skEq(x, v.x) && !skEq(y, v.y) && !skEq(z, v.z) && !skEq(w, v.w);
     }
 
+    void print(void) const;
+
     skScalar x, y, z, w;
 
 public:

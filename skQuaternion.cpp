@@ -20,6 +20,12 @@
 -------------------------------------------------------------------------------
 */
 #include "skQuaternion.h"
+#include <cstdio>
 
 const skQuaternion skQuaternion::Identity = skQuaternion(1, 0, 0, 0);
-const skQuaternion skQuaternion::Zero = skQuaternion(0, 0, 0, 0);
+const skQuaternion skQuaternion::Zero     = skQuaternion(0, 0, 0, 0);
+
+void skQuaternion::print(void) const
+{
+    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", w, x, y, z);
+}

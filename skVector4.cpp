@@ -20,6 +20,12 @@
 -------------------------------------------------------------------------------
 */
 #include "skVector4.h"
+#include <cstdio>
 
 const skVector4 skVector4::Unit = skVector4(1, 1, 1, 1);
 const skVector4 skVector4::Zero = skVector4(0, 0, 0, 0);
+
+void skVector4::print(void) const
+{
+    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", x, y, z, w);
+}

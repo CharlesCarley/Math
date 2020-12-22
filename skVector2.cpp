@@ -20,8 +20,14 @@
 -------------------------------------------------------------------------------
 */
 #include "skVector2.h"
+#include <cstdio>
 
 const skVector2 skVector2::Unit = skVector2(1, 1);
 const skVector2 skVector2::UnitX = skVector2(1, 0);
 const skVector2 skVector2::UnitY = skVector2(0, 1);
 const skVector2 skVector2::Zero = skVector2(0, 0);
+
+void skVector2::print(void) const
+{
+    printf("[%3.3f, %3.3f]\n", x, y);
+}

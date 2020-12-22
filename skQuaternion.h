@@ -228,6 +228,8 @@ public:
     {
         return &w;
     }
+
+    void print(void) const;
 };
 
 #endif  //_skQuaternion_h_

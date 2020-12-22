@@ -315,6 +315,8 @@ public:
         constrainY(y1, y2);
     }
 
+    void print(void) const;
+
 public:
     skScalar x, y;
 

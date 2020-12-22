@@ -362,6 +362,9 @@ public:
 
     void asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const;
     void asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const;
+
+
+    void print() const;
 };
 
 #endif  //_skColor_h_

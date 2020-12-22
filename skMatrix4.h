@@ -84,7 +84,8 @@ public:
     void makeInverseTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);
     void makeInverseTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
     void merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b) const;
-    void print(void);
+
+    void print(void) const;
 
 public:
     static const skMatrix4 Identity;

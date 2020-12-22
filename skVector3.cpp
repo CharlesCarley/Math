@@ -20,9 +20,15 @@
 -------------------------------------------------------------------------------
 */
 #include "skVector3.h"
+#include <cstdio>
 
 const skVector3 skVector3::Unit  = skVector3(1, 1, 1);
 const skVector3 skVector3::UnitX = skVector3(1, 0, 0);
 const skVector3 skVector3::UnitY = skVector3(0, 1, 0);
 const skVector3 skVector3::UnitZ = skVector3(0, 0, 1);
 const skVector3 skVector3::Zero  = skVector3(0, 0, 0);
+
+void skVector3::print(void) const
+{
+    printf("[%3.3f, %3.3f, %3.3f]\n", x, y, z);
+}

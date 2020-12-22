@@ -20,6 +20,12 @@
 -------------------------------------------------------------------------------
 */
 #include "skRectangle.h"
+#include <cstdio>
+
+void skRectangle::print(void) const
+{
+    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", x, y, width, height);
+}
 
 skRectangle& skRectangle::normalize(void)
 {
@@ -57,7 +63,6 @@ skRectangle& skRectangle::max(const skRectangle& oth)
 
     return *this;
 }
-
 
 skRectangle& skRectangle::min(const skRectangle& oth)
 {

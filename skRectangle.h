@@ -28,7 +28,6 @@
 #undef min
 #endif  //min
 
-
 class skRectangle
 {
 public:
@@ -339,6 +338,8 @@ public:
     {
         return x != rhs.x || y != rhs.y || width != rhs.width || height != rhs.height;
     }
+
+    void print(void) const;
 };
 
 #endif  //_skRectangle_h_

@@ -20,13 +20,9 @@
 -------------------------------------------------------------------------------
 */
 #include "skEuler.h"
-#ifdef SK_MATH_DEBUG
-#include "Utils/skDebugger.h"
-#endif
+#include <cstdio>
 
-void skEuler::print(void)
+void skEuler::print(void) const
 {
-#ifdef SK_MATH_DEBUG
-    skPrintf(" y %3.3f,  p %3.3f, r %3.3f\n", yaw, pitch, roll);
-#endif
+    printf("y %3.3f,  p %3.3f, r %3.3f\n", yaw, pitch, roll);
 }

@@ -88,7 +88,7 @@ public:
         yaw = skMath::wrap2Pi(yaw);
     }
 
-    void print(void);
+    void print(void) const;
 };
 
 #endif//_skEuler_h_

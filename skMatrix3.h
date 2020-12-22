@@ -201,7 +201,7 @@ public:
         m[2][2] = skScalar(1.0) - skScalar(2.0) * (qx2 + qy2);
     }
 
-    void print(void);
+    void print(void) const;
 
 public:
     static const skMatrix3 Identity;

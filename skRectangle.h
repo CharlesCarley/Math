@@ -61,8 +61,9 @@ public:
 
     skRectangle& operator=(const skRectangle& o)
     {
-        x      = o.x;
-        y      = o.y;
+        x = o.x;
+        y = o.y;
+
         width  = o.width;
         height = o.height;
         return *this;
@@ -154,13 +155,14 @@ public:
 
     skVector2 getCenter(void) const
     {
-        return skVector2(x + (width / 2), y + (height / 2));
+        return skVector2(x + (width / skScalar(2)),
+                         y + (height / skScalar(2)));
     }
 
     void getCenter(skScalar& cx, skScalar& cy) const
     {
-        cx = x + (width / 2);
-        cy = y + (height / 2);
+        cx = x + (width / skScalar(2));
+        cy = y + (height / skScalar(2));
     }
 
     void getCorners(skVector2& lt, skVector2& rt, skVector2& lb, skVector2& rb) const
@@ -230,17 +232,17 @@ public:
 
     SK_INLINE bool contains(skScalar vx, skScalar vy) const
     {
-        return (vx >= x && vy >= y && ((vx - x) <= width) && ((vy - y) <= height));
+        return vx >= x && vy >= y && (vx - x) <= width && (vy - y) <= height;
     }
 
     SK_INLINE bool containsX(skScalar vx) const
     {
-        return (vx >= x && ((vx - x) <= width));
+        return vx >= x && (vx - x) <= width;
     }
 
     SK_INLINE bool containsY(skScalar vy) const
     {
-        return (vy >= y && ((vy - y) <= height));
+        return vy >= y && (vy - y) <= height;
     }
 
     bool contains(const skVector2& v) const
@@ -249,6 +251,7 @@ public:
     }
 
     bool contains(const skRectangle& rect) const;
+
     bool clipped(skScalar tx, skScalar ty, skScalar tw, skScalar th) const;
     bool clipped(skScalar tx, skScalar ty, skScalar tw, skScalar th, const int dir) const;
 
@@ -280,6 +283,17 @@ public:
         x2 = x1 + width;
         y2 = y1 + height;
     }
+
+    void setCorners(const skScalar& x1, const skScalar& y1, const skScalar& x2, const skScalar& y2)
+    {
+        x = x1;
+        y = y1;
+
+        width  = x2 - x1;
+        height = y2 - y1;
+    }
+
+    void setAbsoluteCorners(const skScalar& x1, const skScalar& y1, const skScalar& x2, const skScalar& y2);
 
     SK_INLINE skScalar getAspect(void) const
     {
@@ -331,12 +345,12 @@ public:
 
     SK_INLINE bool operator==(const skRectangle& rhs) const
     {
-        return x == rhs.x && y == rhs.y && width == rhs.width && height == rhs.height;
+        return skEq(x, rhs.x) && skEq(y, rhs.y) && skEq(width, rhs.width) && skEq(height, rhs.height);
     }
 
     SK_INLINE bool operator!=(const skRectangle& rhs) const
     {
-        return x != rhs.x || y != rhs.y || width != rhs.width || height != rhs.height;
+        return !(skEq(x, rhs.x) && skEq(y, rhs.y) && skEq(width, rhs.width) && skEq(height, rhs.height));
     }
 
     void print(void) const;

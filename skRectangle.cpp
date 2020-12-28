@@ -167,3 +167,31 @@ bool skRectangle::clipped(skScalar tx, skScalar ty, skScalar tw, skScalar th, co
 
     return false;
 }
+
+void skRectangle::setAbsoluteCorners(const skScalar& x1,
+                                     const skScalar& y1,
+                                     const skScalar& x2,
+                                     const skScalar& y2)
+{
+    if (x1 > x2)
+    {
+        x     = x2;
+        width = x1 - x2;
+    }
+    else
+    {
+        x     = x1;
+        width = x2 - x1;
+    }
+
+    if (y1 > y2)
+    {
+        y     = y2;
+        width = y1 - y2;
+    }
+    else
+    {
+        y      = y1;
+        height = y2 - y1;
+    }
+}

@@ -99,7 +99,7 @@ void skMath::projection(skMatrix4& dest,
     dest.makeIdentity();
     dest.m[0][0] = A / aspect;
     dest.m[1][1] = A;
-    dest.m[2][2] = -zFar*oFN;
+    dest.m[2][2] = -zFar * oFN;
     dest.m[2][3] = -(zFar * zNear) * oFN;
     dest.m[3][2] = -skScalar(1);
 }
@@ -160,4 +160,18 @@ void skMath::sinCos(const skScalar& theta, skScalar& y, skScalar& x)
 {
     x = skCos(theta);
     y = skSin(theta);
+}
+
+void skMath::forceAlign(skScalar& val, int mod)
+{
+    if (mod > 0)
+    {
+        SKsize       wpI = (SKsize)val;
+        const SKsize wpR = wpI % SKsize(mod);
+        if (wpR != 0)
+        {
+            wpI += mod - (mod - wpR);
+            val = skScalar(wpI);
+        }
+    }
 }

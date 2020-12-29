@@ -143,7 +143,9 @@ public:
     static void view(class skMatrix4& dest, const class skVector3& pos, const class skQuaternion& rot);
     static void view(class skMatrix4& dest, const class skVector3& pos, const class skMatrix3& rot);
 
-    static int      pow2(int n);
+    static int pow2(int n);
+    static void forceAlign(skScalar &val, int mod);
+
     static skScalar wrap2Pi(skScalar x);
     static void     sinCos(const skScalar& theta, skScalar& y, skScalar& x);
 

@@ -61,6 +61,7 @@ set(Math_HDR
     skRandom.h
     skRectangle.h
     skTransform2D.h
+    skScreenTransform.h
     skVector2.h
     skVector3.h
     skVector4.h

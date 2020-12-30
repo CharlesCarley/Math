@@ -32,23 +32,20 @@ class skScreenTransform
 {
 private:
     skVector2   m_origin;         // (0,0) of the coordinate system
-    skVector2   m_view;           // offset from window center
+    skVector2   m_center;         // offset from viewport center
     skRectangle m_viewport;       // fixed bounds of the viewport ([x] [x] [L] [L])
     skVector2   m_extent;         // storage to compute the change in m_viewport.getSize()
     skScalar    m_zoom;           // computed viewport change
     skScalar    m_scale;          // the current amount to scale the viewport by
     skVector2   m_scaleLimit;     // the range of the scale function
     skVector2   m_initialOrigin;  // the 'home' origin
-    skVector2   m_zoomLimit;
 
 public:
     skScreenTransform() :
         m_zoom(1),
         m_scale(1)
     {
-        m_scaleLimit  = skVector2::Unit;
-        m_zoomLimit.x = skScalar(1);
-        m_zoomLimit.y = 1;
+        m_scaleLimit = skVector2::Unit;
     }
 
     void zoom(const skScalar factor, bool negate)
@@ -64,9 +61,8 @@ public:
         {
             m_extent = m_viewport.getSize() + m_scale;
             m_zoom   = m_extent.x / m_viewport.width;
-
-            if (m_zoom <= m_zoomLimit.x)
-                m_zoom = m_zoomLimit.x;
+            if (m_zoom < 1)
+                m_zoom = 1;
         }
     }
 
@@ -81,12 +77,11 @@ public:
         m_scale  = 1;
         m_origin = m_initialOrigin;
         m_extent = m_viewport.getSize();
-        m_view   = m_extent / 2;
-
+        m_center = m_extent / 2;
         if (m_viewport.width > 0)
             m_zoom = m_extent.x / m_viewport.width;
         else
-            m_zoom = m_zoomLimit.x;
+            m_zoom = 1;
     }
 
     SK_INLINE const skScalar& getZoom() const
@@ -96,12 +91,12 @@ public:
 
     SK_INLINE skScalar xOffs() const
     {
-        return (-m_view.x + m_origin.x + m_extent.x / skScalar(2)) / m_zoom;
+        return (-m_center.x + m_origin.x + m_extent.x / skScalar(2)) / m_zoom;
     }
 
     SK_INLINE skScalar yOffs() const
     {
-        return (-m_view.y + m_origin.y + m_extent.y / skScalar(2)) / m_zoom;
+        return (-m_center.y + m_origin.y + m_extent.y / skScalar(2)) / m_zoom;
     }
 
     SK_INLINE void xToView(skScalar& x) const
@@ -177,6 +172,11 @@ public:
     SK_INLINE const skVector2& getExtent() const
     {
         return m_extent;
+    }
+
+    SK_INLINE const skVector2& getCenter() const
+    {
+        return m_center;
     }
 
     SK_INLINE const skRectangle& getViewport() const

@@ -79,6 +79,18 @@ public:
         return skVector2(x, y);
     }
 
+
+    SK_INLINE skScalar hw(void) const
+    {
+        return width * skScalar(.5);
+    }
+
+    SK_INLINE skScalar hh(void) const
+    {
+        return height * skScalar(.5);
+    }
+
+
     skScalar getWidth(void) const
     {
         return width;
@@ -155,14 +167,14 @@ public:
 
     skVector2 getCenter(void) const
     {
-        return skVector2(x + (width / skScalar(2)),
-                         y + (height / skScalar(2)));
+        return skVector2(x + width / skScalar(2),
+                         y + height / skScalar(2));
     }
 
     void getCenter(skScalar& cx, skScalar& cy) const
     {
-        cx = x + (width / skScalar(2));
-        cy = y + (height / skScalar(2));
+        cx = x + width / skScalar(2);
+        cy = y + height / skScalar(2);
     }
 
     void getCorners(skVector2& lt, skVector2& rt, skVector2& lb, skVector2& rb) const
@@ -232,17 +244,17 @@ public:
 
     SK_INLINE bool contains(skScalar vx, skScalar vy) const
     {
-        return vx >= x && vy >= y && (vx - x) <= width && (vy - y) <= height;
+        return vx >= x && vy >= y && vx - x <= width && vy - y <= height;
     }
 
     SK_INLINE bool containsX(skScalar vx) const
     {
-        return vx >= x && (vx - x) <= width;
+        return vx >= x && vx - x <= width;
     }
 
     SK_INLINE bool containsY(skScalar vy) const
     {
-        return vy >= y && (vy - y) <= height;
+        return vy >= y && vy - y <= height;
     }
 
     bool contains(const skVector2& v) const

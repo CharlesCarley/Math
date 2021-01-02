@@ -83,13 +83,13 @@ public:
         m[0][2] = x;
         m[1][2] = y;
     }
-    
+
     SK_INLINE void setScale(const skVector2& s)
     {
         m[0][0] = s.x;
         m[1][1] = s.y;
     }
-    
+
     SK_INLINE void setScale(skScalar x, skScalar y)
     {
         m[0][0] = x;
@@ -138,7 +138,8 @@ public:
             m[2][0] == v.m[2][0] && m[2][1] == v.m[2][1] && m[2][2] == m[2][2]);
     }
 
-    union {
+    union
+    {
         skScalar m[3][3];
         skScalar p[9]{};
     };

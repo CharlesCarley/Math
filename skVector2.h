@@ -28,25 +28,25 @@ class skVector2
 {
 public:
     skVector2() :
-        x(0), 
+        x(0),
         y(0)
     {
     }
 
     skVector2(const skScalar nx, const skScalar ny) :
-        x(nx), 
+        x(nx),
         y(ny)
     {
     }
 
     explicit skVector2(skScalar* p) :
-        x(p[0]), 
+        x(p[0]),
         y(p[1])
     {
     }
-    
+
     skVector2(const skVector2& v) :
-        x(v.x), 
+        x(v.x),
         y(v.y)
     {
     }
@@ -85,7 +85,7 @@ public:
 
     SK_INLINE bool operator>(const skVector2& v) const
     {
-        return x > v.x&& y > v.y;
+        return x > v.x && y > v.y;
     }
 
     SK_INLINE bool operator<=(const skVector2& v) const

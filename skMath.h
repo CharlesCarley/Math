@@ -25,39 +25,39 @@
 #include "skScalar.h"
 
 #ifdef SK_DOUBLE
-#define skSqrt      (skScalar)sqrt
-#define skInvSqrt   (skScalar)1.0 / (skScalar)sqrt
-#define skFloor     (skScalar)floor
-#define skCeil      (skScalar)ceil
-#define skSin       (skScalar)sin
-#define skCos       (skScalar)cos
-#define skTan       (skScalar)tan
-#define skExp       (skScalar)exp
-#define skLog       (skScalar)log
-#define skPow       (skScalar)pow
-#define skMod       (skScalar)fmod
-#define skASin      (skScalar)asin
-#define skACos      (skScalar)acos
-#define skATan      (skScalar)atan
-#define skATan2     (skScalar)atan2
-#define skFmod      (skScalar)fmod
+#define skSqrt (skScalar) sqrt
+#define skInvSqrt (skScalar)1.0 / (skScalar)sqrt
+#define skFloor (skScalar) floor
+#define skCeil (skScalar) ceil
+#define skSin (skScalar) sin
+#define skCos (skScalar) cos
+#define skTan (skScalar) tan
+#define skExp (skScalar) exp
+#define skLog (skScalar) log
+#define skPow (skScalar) pow
+#define skMod (skScalar) fmod
+#define skASin (skScalar) asin
+#define skACos (skScalar) acos
+#define skATan (skScalar) atan
+#define skATan2 (skScalar) atan2
+#define skFmod (skScalar) fmod
 #else
-#define skSqrt      (skScalar)sqrtf
-#define skInvSqrt   (skScalar)1.f / (skScalar)sqrtf
-#define skFloor     (skScalar)floorf
-#define skCeil      (skScalar)ceilf
-#define skSin       (skScalar)sinf
-#define skCos       (skScalar)cosf
-#define skTan       (skScalar)tanf
-#define skExp       (skScalar)expf
-#define skLog       (skScalar)logf
-#define skPow       (skScalar)powf
-#define skMod       (skScalar)fmodf
-#define skASin      (skScalar)asinf
-#define skACos      (skScalar)acosf
-#define skATan      (skScalar)atanf
-#define skATan2     (skScalar)atan2f
-#define skFmod      (skScalar)fmodf
+#define skSqrt (skScalar) sqrtf
+#define skInvSqrt (skScalar)1.f / (skScalar)sqrtf
+#define skFloor (skScalar) floorf
+#define skCeil (skScalar) ceilf
+#define skSin (skScalar) sinf
+#define skCos (skScalar) cosf
+#define skTan (skScalar) tanf
+#define skExp (skScalar) expf
+#define skLog (skScalar) logf
+#define skPow (skScalar) powf
+#define skMod (skScalar) fmodf
+#define skASin (skScalar) asinf
+#define skACos (skScalar) acosf
+#define skATan (skScalar) atanf
+#define skATan2 (skScalar) atan2f
+#define skFmod (skScalar) fmodf
 #endif
 
 SK_INLINE skScalar skAbs(const skScalar& v)
@@ -87,7 +87,7 @@ SK_INLINE skScalar skDecimalPart(const skScalar v)
 
 SK_INLINE void skSplitScalar(const skScalar v, skScalar& whole, skScalar& decimal)
 {
-    whole = skFloor(v);
+    whole   = skFloor(v);
     decimal = v - whole;
 }
 
@@ -110,7 +110,6 @@ SK_INLINE bool skEqT(skScalar x, skScalar y, skScalar tol)
 {
     return skAbs(x - y) < tol;
 }
-
 
 const skScalar skPi     = skScalar(4.0 * skATan(1.0));
 const skScalar skPi2    = skScalar(2.0) * skPi;
@@ -143,8 +142,8 @@ public:
     static void view(class skMatrix4& dest, const class skVector3& pos, const class skQuaternion& rot);
     static void view(class skMatrix4& dest, const class skVector3& pos, const class skMatrix3& rot);
 
-    static int pow2(int n);
-    static void forceAlign(skScalar &val, int mod);
+    static int  pow2(int n);
+    static void forceAlign(skScalar& val, int mod);
 
     static skScalar wrap2Pi(skScalar x);
     static void     sinCos(const skScalar& theta, skScalar& y, skScalar& x);
@@ -153,4 +152,4 @@ public:
     static skScalar toFieldOfView(const skScalar& mm);
 };
 
-#endif//_skMath_h_
+#endif  //_skMath_h_

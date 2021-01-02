@@ -26,12 +26,11 @@
 #include "skTransform2D.h"
 #include "skVector3.h"
 
-
-
 class skMatrix4
 {
 public:
-    union {
+    union
+    {
         skScalar m[4][4];
         skScalar p[16]{};
     };
@@ -78,7 +77,7 @@ public:
     skMatrix4 inverted(void) const;
 
     void multAssign(const skMatrix4& a, skMatrix4 b);
-    
+
     void makeTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);
     void makeTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
     void makeInverseTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);

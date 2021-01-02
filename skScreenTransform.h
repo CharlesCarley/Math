@@ -72,6 +72,12 @@ public:
         m_origin.y += py * m_zoom;
     }
 
+    void panFixed(const skScalar px, const skScalar py)
+    {
+        m_origin.x += px;
+        m_origin.y += py;
+    }
+
     void reset()
     {
         m_scale  = 1;

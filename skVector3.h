@@ -24,7 +24,6 @@
 
 #include "skMath.h"
 
-
 class skVector3
 {
 public:
@@ -65,7 +64,6 @@ public:
         else
             x = y = z = 0;
     }
-
 
     skVector3(const skVector3& v) :
         x(v.x),
@@ -238,7 +236,7 @@ public:
 
     void normalize(void)
     {
-        skScalar mag = length();
+        const skScalar mag = length();
         if (mag > skScalar(0.0))
             *this /= mag;
     }

@@ -79,7 +79,6 @@ public:
         return skVector2(x, y);
     }
 
-
     SK_INLINE skScalar hw(void) const
     {
         return width * skScalar(.5);
@@ -89,7 +88,6 @@ public:
     {
         return height * skScalar(.5);
     }
-
 
     skScalar getWidth(void) const
     {
@@ -334,7 +332,7 @@ public:
 
     skRectangle& center(const skRectangle& oth)
     {
-        if (oth.width && oth.height)
+        if (!skIsZero(oth.width) && !skIsZero(oth.height))
             setPosition(getPosition() + oth.center());
         return *this;
     }
@@ -357,7 +355,10 @@ public:
 
     SK_INLINE bool operator==(const skRectangle& rhs) const
     {
-        return skEq(x, rhs.x) && skEq(y, rhs.y) && skEq(width, rhs.width) && skEq(height, rhs.height);
+        return skEq(x, rhs.x) &&
+               skEq(y, rhs.y) &&
+               skEq(width, rhs.width) &&
+               skEq(height, rhs.height);
     }
 
     SK_INLINE bool operator!=(const skRectangle& rhs) const

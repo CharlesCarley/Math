@@ -166,7 +166,7 @@ public:
     {
         skColorHSV hsv;
         skColorUtils::convert(hsv, *this);
-        hsv.s = skScalar(s * skColorUtils::i100);
+        hsv.s = skScalar(s) * skColorUtils::i100;
         skColorUtils::convert(*this, hsv);
     }
 
@@ -174,7 +174,7 @@ public:
     {
         skColorHSV hsv;
         skColorUtils::convert(hsv, *this);
-        hsv.v = skScalar(v * skColorUtils::i100);
+        hsv.v = skScalar(v) * skColorUtils::i100;
         skColorUtils::convert(*this, hsv);
     }
 
@@ -243,9 +243,9 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator+(const skScalar r, const skColor& l)
+    friend SK_INLINE skColor operator+(const skScalar rc, const skColor& l)
     {
-        return l + r;
+        return l + rc;
     }
 
     SK_INLINE skColor operator-(skScalar v) const
@@ -274,9 +274,9 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator-(const skScalar r, const skColor& l)
+    friend SK_INLINE skColor operator-(const skScalar rc, const skColor& l)
     {
-        return l - r;
+        return l - rc;
     }
 
     SK_INLINE skColor operator*(skScalar v) const
@@ -305,13 +305,15 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator*(skScalar r, const skColor& l)
+    friend SK_INLINE skColor operator*(skScalar rc, const skColor& l)
     {
-        return l * r;
+        return l * rc;
     }
 
     SK_INLINE skColor operator/(skScalar v) const
     {
+        if (skIsZero(v))
+            v = 1;
         return skColor(r / v, g / v, b / v, a);
     }
 
@@ -336,9 +338,9 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator/(skScalar r, const skColor& l)
+    friend SK_INLINE skColor operator/(skScalar rc, const skColor& l)
     {
-        return l / r;
+        return l / rc;
     }
 
     skColor& operator=(const skColor& o)
@@ -362,7 +364,6 @@ public:
 
     void asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const;
     void asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const;
-
 
     void print() const;
 };

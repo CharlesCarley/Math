@@ -72,10 +72,10 @@ public:
         m_origin.y += py * m_zoom;
     }
 
-    void panFixed(const skScalar px, const skScalar py)
+    void setOrigin(const skScalar px, const skScalar py)
     {
-        m_origin.x += px;
-        m_origin.y += py;
+        m_origin.x = px;
+        m_origin.y = py;
     }
 
     void reset()
@@ -200,6 +200,16 @@ public:
         return m_viewport.y;
     }
 
+    SK_INLINE skScalar viewportRight() const
+    {
+        return m_viewport.getRight();
+    }
+
+    SK_INLINE skScalar viewportBottom() const
+    {
+        return m_viewport.getBottom();
+    }
+
     SK_INLINE const skScalar& viewportWidth() const
     {
         return m_viewport.width;
@@ -236,6 +246,14 @@ public:
         m_viewport.y      = y;
         m_viewport.width  = width;
         m_viewport.height = height;
+    }
+
+    bool isInViewport(const skScalar& x1, const skScalar& y1, const skScalar& x2, const skScalar& y2) const
+    {
+        skRectangle r1, r2;
+        r1.setSize(m_viewport.width, m_viewport.height);
+        r2.setCorners(x1, y1, x2, y2);
+        return r1.contains(r2);
     }
 };
 

@@ -66,6 +66,17 @@ public:
         }
     }
 
+
+    void zoomLarge(const skScalar factor, bool negate)
+    {
+        m_scale += factor * m_zoom * (negate ? skScalar(-1) : skScalar(1));
+
+        m_extent = m_viewport.getSize() + m_scale;
+        m_zoom   = m_extent.x / m_viewport.width;
+        if (skEqT(m_zoom, 0, SK_EPSILON))
+            m_zoom = SK_EPSILON;
+    }
+
     void pan(const skScalar px, const skScalar py)
     {
         m_origin.x += px * m_zoom;
@@ -93,6 +104,11 @@ public:
     SK_INLINE const skScalar& getZoom() const
     {
         return m_zoom;
+    }
+
+    SK_INLINE const skScalar& getScale() const
+    {
+        return m_scale;
     }
 
     SK_INLINE skScalar xOffs() const

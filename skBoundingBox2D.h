@@ -62,6 +62,16 @@ public:
         *this = Identity;
     }
 
+    SK_INLINE skScalar xLength(void)
+    {
+        return x2 - x1;
+    }
+
+    SK_INLINE skScalar yLength(void)
+    {
+        return y2 - y1;
+    }
+
     SK_INLINE skRectangle getRect(void) const
     {
         return skRectangle(x1, y1, x2 - x1, y2 - y1);

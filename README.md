@@ -2,7 +2,19 @@
 
 Is a basic linear math library for 2D & 3D Graphics with OpenGL.
 
-## Building with CMake & Make
+## Building
+
+### External Modules
+
++ [Utils](https://github.com/CharlesCarley/Utils)
+
+The Utils submodule must also be checked out with the following command.
+
+```sh
+git submodule update -–init
+```  
+
+### Building with CMake & Make
 
 ```sh
 mkdir build
@@ -11,11 +23,14 @@ cmake ..
 make
 ```
 
-### Optional defines
+
+Optional defines
 
 + Math_SCALAR_DOUBLE - Define scalar type as double. Default:OFF (float)
 
-### References
+
+
+## References
 
 Some portions have been derived from:
 

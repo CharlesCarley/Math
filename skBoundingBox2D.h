@@ -62,12 +62,12 @@ public:
         *this = Identity;
     }
 
-    SK_INLINE skScalar xLength(void)
+    SK_INLINE skScalar xLength(void) const
     {
         return x2 - x1;
     }
 
-    SK_INLINE skScalar yLength(void)
+    SK_INLINE skScalar yLength(void) const
     {
         return y2 - y1;
     }

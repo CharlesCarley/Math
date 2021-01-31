@@ -23,8 +23,8 @@
 #define _skMatrix4_h_
 
 #include "skMatrix3.h"
-#include "skTransform2D.h"
 #include "skVector3.h"
+#include "skTransform2D.h"
 
 class skMatrix4
 {

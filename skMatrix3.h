@@ -37,11 +37,11 @@ public:
     };
 
 public:
-    skMatrix3()  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    skMatrix3()
     {
     }
 
-    skMatrix3(skScalar m00,  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    skMatrix3(skScalar m00,
               skScalar m01,
               skScalar m02,
               skScalar m10,
@@ -62,7 +62,7 @@ public:
         m[2][2] = m22;
     }
 
-    explicit skMatrix3(const skScalar* v)  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    explicit skMatrix3(const skScalar* v)
     {
         m[0][0] = *v++;
         m[0][1] = *v++;
@@ -75,7 +75,7 @@ public:
         m[2][2] = *v;
     }
 
-    skMatrix3(const skMatrix3& v)  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    skMatrix3(const skMatrix3& v)
     {
         m[0][0] = v.m[0][0];
         m[0][1] = v.m[0][1];

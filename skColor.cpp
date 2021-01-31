@@ -62,12 +62,7 @@ void skColor::asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const
 
 void skColorUtils::convert(skColori& dst, const skColor& src)
 {
-    union
-    {  
-        unsigned char b[4];
-        skColori      i;
-    } color;
-
+    skColorU color{};
     color.b[3] = (unsigned char)(src.r * 255);
     color.b[2] = (unsigned char)(src.g * 255);
     color.b[1] = (unsigned char)(src.b * 255);
@@ -77,14 +72,8 @@ void skColorUtils::convert(skColori& dst, const skColor& src)
 
 void skColorUtils::convert(skColor& dst, const skColori& src)
 {
-    union
-    {  
-        unsigned char b[4];
-        skColori      i;
-    } color;
-
+    skColorU color{};
     color.i = src;
-
     dst.r = (skScalar)color.b[3] * i255;
     dst.g = (skScalar)color.b[2] * i255;
     dst.b = (skScalar)color.b[1] * i255;

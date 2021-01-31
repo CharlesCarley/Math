@@ -25,8 +25,15 @@
 #include "skMath.h"
 
 typedef unsigned int skColori;
+
 class skColorHSV;
 class skColor;
+
+typedef union skColorU
+{
+    unsigned char b[4];
+    unsigned int  i;
+} skColorU;
 
 class skColorUtils
 {
@@ -218,12 +225,12 @@ public:
             skClamp<skScalar>(a, 0, 1));
     }
 
-    SK_INLINE skColor operator+(skScalar v) const
+    skColor operator+(skScalar v) const
     {
         return skColor(r + v, g + v, b + v, a);
     }
 
-    SK_INLINE skColor operator+(const skColor& v) const
+    skColor operator+(const skColor& v) const
     {
         return skColor(r + v.r, g + v.g, b + v.b, a);
     }
@@ -243,17 +250,17 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator+(const skScalar rc, const skColor& l)
+    friend skColor operator+(const skScalar rc, const skColor& l)
     {
         return l + rc;
     }
 
-    SK_INLINE skColor operator-(skScalar v) const
+    skColor operator-(skScalar v) const
     {
         return skColor(r - v, g - v, b - v, a);
     }
 
-    SK_INLINE skColor operator-(const skColor& v) const
+    skColor operator-(const skColor& v) const
     {
         return skColor(r - v.r, g - v.g, b - v.b, a);
     }
@@ -274,17 +281,17 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator-(const skScalar rc, const skColor& l)
+    friend skColor operator-(const skScalar rc, const skColor& l)
     {
         return l - rc;
     }
 
-    SK_INLINE skColor operator*(skScalar v) const
+    skColor operator*(skScalar v) const
     {
         return skColor(r * v, g * v, b * v, a);
     }
 
-    SK_INLINE skColor operator*(const skColor& v) const
+    skColor operator*(const skColor& v) const
     {
         return skColor(r * v.r, g * v.g, b * v.b, a);
     }
@@ -305,19 +312,19 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator*(skScalar rc, const skColor& l)
+    friend skColor operator*(skScalar rc, const skColor& l)
     {
         return l * rc;
     }
 
-    SK_INLINE skColor operator/(skScalar v) const
+    skColor operator/(skScalar v) const
     {
         if (skIsZero(v))
             v = 1;
         return skColor(r / v, g / v, b / v, a);
     }
 
-    SK_INLINE skColor operator/(const skColor& v) const
+    skColor operator/(const skColor& v) const
     {
         return skColor(r / v.r, g / v.g, b / v.b, a);
     }
@@ -338,7 +345,7 @@ public:
         return *this;
     }
 
-    friend SK_INLINE skColor operator/(skScalar rc, const skColor& l)
+    friend skColor operator/(skScalar rc, const skColor& l)
     {
         return l / rc;
     }
@@ -352,12 +359,12 @@ public:
         return *this;
     }
 
-    SK_INLINE skScalar* ptr()
+    skScalar* ptr()
     {
         return &r;
     }
 
-    SK_INLINE const skScalar* ptr() const
+    const skScalar* ptr() const
     {
         return &r;
     }

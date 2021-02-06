@@ -22,12 +22,17 @@
 #ifndef _skScalar_h_
 #define _skScalar_h_
 
-#include <cmath>
+#ifdef __cplusplus
 #include <cfloat>
-
-// Header file only 
+#include <cmath>
+// Header file only
 #include "Utils/Config/skConfig.h"
 #include "Utils/skMinMax.h"
+#else
+#include <float.h>
+#include <math.h>
+#endif 
+
 
 #ifdef SK_DOUBLE
 #define SK_EPSILON     DBL_EPSILON

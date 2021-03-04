@@ -310,9 +310,19 @@ public:
         return width / height;
     }
 
+    skScalar cx(void) const
+    {
+        return x + width * skScalar(0.5);
+    }
+
+    skScalar cy(void) const
+    {
+        return y + height * skScalar(0.5);
+    }
+
     skVector2 center(void) const
     {
-        return skVector2(x + width * skScalar(0.5), y + height * skScalar(0.5));
+        return skVector2(cx(), cy());
     }
 
     skRectangle& makeMinMax(void);

@@ -315,6 +315,17 @@ public:
         constrainY(y1, y2);
     }
 
+    skScalar minValue() const
+    {
+        return x < y ? x : y;
+    }
+
+    skScalar maxValue() const
+    {
+        return x > y ? x : y;
+    }
+
+
     void print(void) const;
 
 public:

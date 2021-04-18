@@ -22,7 +22,6 @@
 #ifndef _skMatrix4_h_
 #define _skMatrix4_h_
 
-#include "skMatrix3.h"
 #include "skVector3.h"
 #include "skTransform2D.h"
 

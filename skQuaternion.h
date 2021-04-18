@@ -34,9 +34,7 @@ public:
     skScalar w{}, x{}, y{}, z{};
 
 public:
-    skQuaternion()
-    {
-    }
+    skQuaternion() = default;
 
     skQuaternion(const skScalar nw, const skScalar nx, const skScalar ny, const skScalar nz) :
         w(nw),
@@ -46,9 +44,14 @@ public:
     {
     }
 
-    skQuaternion(const skScalar x, const skScalar y, const skScalar z)
+    skQuaternion(const skScalar xRad, const skScalar yRad, const skScalar zRad)
     {
-        (*this).makeRotXYZ(x, y, z);
+        (*this).makeRotXYZ(xRad, yRad, zRad);
+    }
+
+    skQuaternion(const skVector3& vec)
+    {
+        (*this).makeRotXYZ(vec.x, vec.y, vec.z);
     }
 
     explicit skQuaternion(const skScalar* p) :
@@ -59,13 +62,7 @@ public:
     {
     }
 
-    skQuaternion(const skQuaternion& v) :
-        w(v.w),
-        x(v.x),
-        y(v.y),
-        z(v.z)
-    {
-    }
+    skQuaternion(const skQuaternion& v) = default;
 
     void makeIdentity(void)
     {
@@ -73,14 +70,15 @@ public:
         x = y = z = 0;
     }
 
-    void makeRotXYZ(const skScalar x, const skScalar y, const skScalar z)
+    void makeRotXYZ(const skScalar xRad, const skScalar yRad, const skScalar zRad)
     {
         skQuaternion q0, q1, q2;
-        q0.makeRotX(x);
-        q1.makeRotY(y);
-        q2.makeRotZ(z);
+        q0.makeRotX(xRad);
+        q1.makeRotY(yRad);
+        q2.makeRotZ(zRad);
 
-        *this = q0 * q1 * q2;
+        *this = q2 * q1 * q0;
+        this->normalize();
     }
 
     void makeRotX(const skScalar v)
@@ -99,6 +97,18 @@ public:
     {
         skMath::sinCos(v * skScalar(0.5), z, w);
         x = y = 0;
+    }
+
+
+    skVector3 toAxis() const
+    {
+
+        skScalar wSq = skScalar(1.0) - w*w;
+        if (wSq <= skScalar(0.0))
+            return skVector3::UnitZ;
+
+        wSq = skScalar(1.0) / wSq;
+        return skVector3(x * wSq, y * wSq, z * wSq);
     }
 
     skScalar length(void) const
@@ -175,10 +185,9 @@ public:
 
     skVector3 operator*(const skVector3& v) const
     {
-        skVector3       a, b;
         const skVector3 c(x, y, z);
-        a = c.cross(v);
-        b = c.cross(a);
+        skVector3       a = c.cross(v);
+        skVector3       b = c.cross(a);
         a *= skScalar(2) * w;
         b *= skScalar(2);
         return v + a + b;
@@ -211,7 +220,7 @@ public:
 
     SK_INLINE bool operator!=(const skQuaternion& v) const
     {
-        return !skEq(x, v.x) && !skEq(y, v.y) && !skEq(z, v.z) && !skEq(w, v.w);
+        return skNeq(x, v.x) && skNeq(y, v.y) && skNeq(z, v.z) && skNeq(w, v.w);
     }
 
     SK_INLINE skScalar length2(void) const

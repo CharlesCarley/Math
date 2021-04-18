@@ -20,7 +20,9 @@
 -------------------------------------------------------------------------------
 */
 #include "skMatrix4.h"
+#include "skMatrix3.h"
 #include <cstdio>
+
 
 const skMatrix4 skMatrix4::Identity = skMatrix4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 const skMatrix4 skMatrix4::Zero     = skMatrix4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);

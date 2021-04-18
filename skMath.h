@@ -106,6 +106,11 @@ SK_INLINE bool skEq(skScalar x, skScalar y)
     return skAbs(x - y) < SK_EPSILON;
 }
 
+SK_INLINE bool skNeq(skScalar x, skScalar y)
+{
+    return !skEq(x,y);
+}
+
 SK_INLINE bool skEqT(skScalar x, skScalar y, skScalar tol)
 {
     return skAbs(x - y) < tol;

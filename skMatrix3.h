@@ -24,6 +24,7 @@
 
 #include "skEuler.h"
 #include "skMath.h"
+#include "skMatrix4.h"
 #include "skQuaternion.h"
 #include "skVector3.h"
 
@@ -37,8 +38,11 @@ public:
     };
 
 public:
-    skMatrix3()
+    skMatrix3() = default;
+
+    explicit skMatrix3(const skMatrix4& m4)
     {
+        this->fromMat4(m4);
     }
 
     skMatrix3(skScalar m00,
@@ -199,6 +203,21 @@ public:
         m[2][0] = skScalar(2.0) * (qxz - qwy);
         m[2][1] = skScalar(2.0) * (qyz + qwx);
         m[2][2] = skScalar(1.0) - skScalar(2.0) * (qx2 + qy2);
+    }
+
+    void fromMat4(const skMatrix4& m4x4)
+    {
+        m[0][0] = m4x4.m[0][0];
+        m[0][1] = m4x4.m[0][1];
+        m[0][2] = m4x4.m[0][2];
+
+        m[1][0] = m4x4.m[1][0];
+        m[1][1] = m4x4.m[1][1];
+        m[1][2] = m4x4.m[1][2];
+
+        m[2][0] = m4x4.m[2][0];
+        m[2][1] = m4x4.m[2][1];
+        m[2][2] = m4x4.m[2][2];
     }
 
     void print(void) const;

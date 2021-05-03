@@ -20,6 +20,7 @@
 -------------------------------------------------------------------------------
 */
 #include "skColor.h"
+#include "skVector3.h"
 #include <cstdio>
 
 const skColor skColor::White = skColor(1, 1, 1, 1);
@@ -38,11 +39,21 @@ const skScalar i4 = 4 * skPiO3;
 const skScalar i5 = 5 * skPiO3;
 
 
+skColor::skColor(const skVector3& v) :
+    r(v.x),
+    g(v.y),
+    b(v.z),
+    a(1)
+{
+    
+}
+
+
 void skColor::print() const
 {
-    SKuint8 r, g, b, a;
-    asInt8(r, g, b, a);
-    printf("#%02X%02X%02X%02X\n", r, g, b, a);
+    SKuint8 vr, vg, vb, va;
+    asInt8(vr, vg, vb, va);
+    printf("#%02X%02X%02X%02X\n", vr, vg, vb, va);
 }
 
 void skColor::asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const
@@ -84,16 +95,14 @@ void skColorUtils::convert(skColor& dst, const skColorHSV& src)
 {
     // https://en.wikipedia.org/w/index.php?title=HSL_and_HSV&oldid=941280606
 
+    const skScalar h = src.h / skScalar(60.0);
 
-    skScalar h, c, x, m;
-    h = src.h / skScalar(60.0);
-
-    c = src.v * src.s;
+    skScalar c = src.v * src.s;
     if (c > skScalar(1.0))
         c = skScalar(1.0);
 
-    x = c * (skScalar(1.0) - skAbs(skFmod(h, skScalar(2.0)) - skScalar(1.0)));
-    m = src.v - c;
+    const skScalar x = c * (skScalar(1.0) - skAbs(skFmod(h, skScalar(2.0)) - skScalar(1.0)));
+    skScalar m = src.v - c;
     if (m > skScalar(1.0))
         m = skScalar(1.0);
     if (m < skScalar(0.0))

@@ -23,6 +23,7 @@
 #define _skColor_h_
 
 #include "skMath.h"
+class skVector3;
 
 typedef unsigned int skColori;
 
@@ -136,13 +137,7 @@ public:
     {
     }
 
-    skColor(const skColor& o) :
-        r(o.r),
-        g(o.g),
-        b(o.b),
-        a(o.a)
-    {
-    }
+    skColor(const skColor& o) = default;
 
     explicit skColor(const skColori& color)
     {
@@ -160,6 +155,8 @@ public:
     {
         skColorUtils::convert(*this, hsv);
     }
+
+    explicit skColor(const skVector3& v);
 
     void setHue(const skColori& h)
     {
@@ -350,14 +347,7 @@ public:
         return l / rc;
     }
 
-    skColor& operator=(const skColor& o)
-    {
-        r = o.r;
-        g = o.g;
-        b = o.b;
-        a = o.a;
-        return *this;
-    }
+    skColor& operator=(const skColor& o) = default;
 
     skScalar* ptr()
     {
@@ -373,6 +363,18 @@ public:
     void asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const;
 
     void print() const;
+
+    skColor& mix(const skColor& rhs, const skScalar t)
+    {
+        const skScalar iT = 1 - t;
+
+        r = iT * r + t * rhs.r;
+        g = iT * g + t * rhs.g;
+        b = iT * b + t * rhs.b;
+
+        return *this;
+    }
+
 };
 
 #endif  //_skColor_h_

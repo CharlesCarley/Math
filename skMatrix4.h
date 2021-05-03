@@ -70,18 +70,18 @@ public:
     void      setScale(const skVector3& v);
     void      setScale(skScalar x, skScalar y, skScalar z);
     skVector3 getScale(void) const;
-    skVector3 getTrans(void);
+    skVector3 getTrans(void) const;
     void      makeIdentity(void);
     skScalar  det(void) const;
     skMatrix4 inverted(void) const;
 
-    void multAssign(const skMatrix4& a, skMatrix4 b);
+    void multAssign(const skMatrix4& a, const skMatrix4& b);
 
-    void makeTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);
-    void makeTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
-    void makeInverseTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);
-    void makeInverseTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
-    void merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b) const;
+    void        makeTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);
+    void        makeTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
+    void        makeInverseTransform(const skVector3& loc, const skVector3& scale, const skQuaternion& rot);
+    void        makeInverseTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
+    static void merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b);
 
     void print(void) const;
 

@@ -23,6 +23,7 @@
 #define _skVector3_h_
 
 #include "skMath.h"
+class skColor;
 
 class skVector3
 {
@@ -40,6 +41,8 @@ public:
         z(nz)
     {
     }
+
+    explicit skVector3(const skColor& col);
 
     explicit skVector3(const float* p)
     {

@@ -161,7 +161,7 @@ skMatrix4 skMatrix4::operator*(const skMatrix4& v) const
         m[3][0] * v.m[0][3] + m[3][1] * v.m[1][3] + m[3][2] * v.m[2][3] + m[3][3] * v.m[3][3]);
 }
 
-void skMatrix4::multAssign(const skMatrix4& a, skMatrix4 b)
+void skMatrix4::multAssign(const skMatrix4& a, const skMatrix4 &b)
 {
     m[0][0] = a.m[0][0] * b.m[0][0] + a.m[0][1] * b.m[1][0] + a.m[0][2] * b.m[2][0] + a.m[0][3] * b.m[3][0];
     m[0][1] = a.m[0][0] * b.m[0][1] + a.m[0][1] * b.m[1][1] + a.m[0][2] * b.m[2][1] + a.m[0][3] * b.m[3][1];
@@ -184,7 +184,7 @@ void skMatrix4::multAssign(const skMatrix4& a, skMatrix4 b)
     m[3][3] = a.m[3][0] * b.m[0][3] + a.m[3][1] * b.m[1][3] + a.m[3][2] * b.m[2][3] + a.m[3][3] * b.m[3][3];
 }
 
-void skMatrix4::merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b) const
+void skMatrix4::merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b)
 {
     d.m[0][0] = a.m[0][0] * b.m[0][0] + a.m[0][1] * b.m[1][0] + a.m[0][2] * b.m[2][0] + a.m[0][3] * b.m[3][0];
     d.m[0][1] = a.m[0][0] * b.m[0][1] + a.m[0][1] * b.m[1][1] + a.m[0][2] * b.m[2][1] + a.m[0][3] * b.m[3][1];
@@ -250,7 +250,7 @@ void skMatrix4::setScale(skScalar x, skScalar y, skScalar z)
     m[3][3] = 1;
 }
 
-skVector3 skMatrix4::getTrans(void)
+skVector3 skMatrix4::getTrans(void) const
 {
     return skVector3(m[0][3], m[1][3], m[2][3]);
 }

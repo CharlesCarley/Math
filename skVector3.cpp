@@ -21,6 +21,7 @@
 */
 #include "skVector3.h"
 #include <cstdio>
+#include "skColor.h"
 
 const skVector3 skVector3::Unit  = skVector3(1, 1, 1);
 const skVector3 skVector3::UnitX = skVector3(1, 0, 0);
@@ -31,4 +32,11 @@ const skVector3 skVector3::Zero  = skVector3(0, 0, 0);
 void skVector3::print(void) const
 {
     printf("[%3.3f, %3.3f, %3.3f]\n", x, y, z);
+}
+
+skVector3::skVector3(const skColor& col) :
+    x(col.r),
+    y(col.g),
+    z(col.b)
+{
 }

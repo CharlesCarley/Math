@@ -151,6 +151,14 @@ public:
         return i;
     }
 
+    void set(skScalar _r, skScalar _g, skScalar _b, skScalar _a = skScalar(1.0))
+    {
+        r = _r;
+        g = _g;
+        b = _b;
+        a = _a;
+    }
+
     explicit skColor(const skColorHSV& hsv)
     {
         skColorUtils::convert(*this, hsv);

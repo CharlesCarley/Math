@@ -20,8 +20,19 @@
 -------------------------------------------------------------------------------
 */
 #include "skColor.h"
-#include "skVector3.h"
 #include <cstdio>
+#include "skVector3.h"
+#if SK_ENDIAN == SK_ENDIAN_BIG
+#define SK_R 0
+#define SK_G 1
+#define SK_B 2
+#define SK_A 3
+#else
+#define SK_R 3
+#define SK_G 2
+#define SK_B 1
+#define SK_A 0
+#endif
 
 const skColor skColor::White = skColor(1, 1, 1, 1);
 const skColor skColor::Black = skColor(0, 0, 0, 1);
@@ -30,7 +41,6 @@ const skScalar skColorUtils::i100 = skScalar(1.0 / 100.0);
 const skScalar skColorUtils::i255 = skScalar(1.0 / 255.0);
 const skScalar skColorUtils::i360 = skScalar(1.0 / 360.0);
 
-
 // constants for rotating
 const skScalar i1 = skPiO3;
 const skScalar i2 = 2 * skPiO3;
@@ -38,16 +48,13 @@ const skScalar i3 = 3 * skPiO3;
 const skScalar i4 = 4 * skPiO3;
 const skScalar i5 = 5 * skPiO3;
 
-
 skColor::skColor(const skVector3& v) :
     r(v.x),
     g(v.y),
     b(v.z),
     a(1)
 {
-    
 }
-
 
 void skColor::print() const
 {
@@ -85,10 +92,10 @@ void skColorUtils::convert(skColor& dst, const skColori& src)
 {
     skColorU color{};
     color.i = src;
-    dst.r = (skScalar)color.b[3] * i255;
-    dst.g = (skScalar)color.b[2] * i255;
-    dst.b = (skScalar)color.b[1] * i255;
-    dst.a = (skScalar)color.b[0] * i255;
+    dst.r   = (skScalar)color.b[SK_R] * i255;
+    dst.g   = (skScalar)color.b[SK_G] * i255;
+    dst.b   = (skScalar)color.b[SK_B] * i255;
+    dst.a   = (skScalar)color.b[SK_A] * i255;
 }
 
 void skColorUtils::convert(skColor& dst, const skColorHSV& src)
@@ -102,7 +109,7 @@ void skColorUtils::convert(skColor& dst, const skColorHSV& src)
         c = skScalar(1.0);
 
     const skScalar x = c * (skScalar(1.0) - skAbs(skFmod(h, skScalar(2.0)) - skScalar(1.0)));
-    skScalar m = src.v - c;
+    skScalar       m = src.v - c;
     if (m > skScalar(1.0))
         m = skScalar(1.0);
     if (m < skScalar(0.0))
@@ -153,6 +160,21 @@ void skColorUtils::convert(skColor& dst, const skColorHSV& src)
     dst.a = src.a;
 }
 
+void skColorUtils::convert(SKubyte*& dst, const skColor& src)
+{
+    dst[SK_R] = (unsigned char)(src.r * 255.99f);
+    dst[SK_G] = (unsigned char)(src.g * 255.99f);
+    dst[SK_B] = (unsigned char)(src.b * 255.99f);
+    dst[SK_A] = (unsigned char)(src.a * 255.99f);
+}
+
+void skColorUtils::convert(skColor& dst, const SKubyte* src)
+{
+    dst.r = (skScalar)src[SK_R] * i255;
+    dst.g = (skScalar)src[SK_G] * i255;
+    dst.b = (skScalar)src[SK_B] * i255;
+    dst.a = (skScalar)src[SK_A] * i255;
+}
 
 void skColorUtils::convert(skColorHSV& dst, const skColor& src)
 {

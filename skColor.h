@@ -47,6 +47,8 @@ public:
     static void convert(skColor& dst, const skColori& src);
     static void convert(skColor& dst, const skColorHSV& src);
     static void convert(skColorHSV& dst, const skColor& src);
+    static void convert(SKubyte*& dst, const skColor& src);
+    static void convert(skColor& dst, const SKubyte* src);
 };
 
 class skColorHSV

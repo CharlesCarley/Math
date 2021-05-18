@@ -36,6 +36,12 @@ typedef union skColorU
     unsigned int  i;
 } skColorU;
 
+typedef union skColorUF
+{
+    unsigned char b[4];
+    float f;
+} skColorUF;
+
 class skColorUtils
 {
 public:
@@ -45,10 +51,14 @@ public:
 
     static void convert(skColori& dst, const skColor& src);
     static void convert(skColor& dst, const skColori& src);
+    static void convert(skColori& dst, const SKubyte* src);
     static void convert(skColor& dst, const skColorHSV& src);
     static void convert(skColorHSV& dst, const skColor& src);
     static void convert(SKubyte*& dst, const skColor& src);
     static void convert(skColor& dst, const SKubyte* src);
+    static void convert(SKubyte*& dst, const skScalar& src);
+    static void convert(SKubyte*& dst, const SKuint32& src);
+    static void convert(skColor& dst, const skScalar& src);
 };
 
 class skColorHSV
@@ -120,14 +130,13 @@ public:
 class skColor
 {
 public:
-    skScalar r{}, g{}, b{}, a{};
+    skScalar r, g, b, a;
 
     static const skColor White;
     static const skColor Black;
 
 public:
-    skColor() :
-        a(1)
+    skColor()
     {
     }
 
@@ -159,6 +168,14 @@ public:
         g = _g;
         b = _b;
         a = _a;
+    }
+
+    void setUb(SKubyte _r, SKubyte _g, SKubyte _b, SKubyte _a = 255)
+    {
+        r = skScalar(_r) * skColorUtils::i255;
+        g = skScalar(_g) * skColorUtils::i255;
+        b = skScalar(_b) * skColorUtils::i255;
+        a = skScalar(_a) * skColorUtils::i255;
     }
 
     explicit skColor(const skColorHSV& hsv)
@@ -211,7 +228,7 @@ public:
     skColori asInt(void) const
     {
         skColori i;
-        skColorUtils::convert(i, (*this));
+        skColorUtils::convert(i, *this);
         return i;
     }
 
@@ -384,7 +401,93 @@ public:
 
         return *this;
     }
-
 };
+
+SK_INLINE void skLimitRGB(skColor& dest)
+{
+    // f(x) x {0 <= x <= 1}
+    dest.r = dest.r < 0 ? 0 : dest.r > 1 ? 1
+                                         : dest.r;
+    dest.g = dest.g < 0 ? 0 : dest.g > 1 ? 1
+                                         : dest.g;
+    dest.b = dest.b < 0 ? 0 : dest.b > 1 ? 1
+                                         : dest.b;
+}
+
+SK_INLINE void skMixRGB(skColor& dest, const skColor& a, const skColor& b, skScalar t)
+{
+    const skScalar iT = 1 - t;
+
+    dest.r = iT * a.r + t * b.r;
+    dest.g = iT * a.g + t * b.g;
+    dest.b = iT * a.b + t * b.b;
+}
+
+SK_INLINE void skMulRGB(skColor& dest, const skColor& a, const skColor& b)
+{
+    // f(a,b) ab
+    dest.r = a.r * b.r;
+    dest.g = a.g * b.g;
+    dest.b = a.b * b.b;
+}
+
+SK_INLINE void skMulRGB(skColor& dest, const skColor& a, const skScalar& b)
+{
+    // f(a,b) ab
+    dest.r = a.r * b;
+    dest.g = a.g * b;
+    dest.b = a.b * b;
+}
+
+SK_INLINE void skMul3RGB(skColor&        dest,
+                         const skColor&  a,
+                         const skColor&  b,
+                         const skScalar& c)
+{
+    // f(a,b,c) abc
+    dest.r = a.r * b.r * c;
+    dest.g = a.g * b.g * c;
+    dest.b = a.b * b.b * c;
+}
+
+SK_INLINE void skAddRGB(skColor& dest, const skColor& a, const skColor& b)
+{
+    // f(a,b) a+b
+    dest.r = a.r + b.r;
+    dest.g = a.g + b.g;
+    dest.b = a.b + b.b;
+}
+
+SK_INLINE void skHalfAddRGB(skColor& dest, const skColor& a, const skColor& b)
+{
+    // f(a,b) 9*(a+b)/16
+    dest.r = (a.r + b.r) * 0.5625f;
+    dest.g = (a.g + b.g) * 0.5625f;
+    dest.b = (a.b + b.b) * 0.5625f;
+}
+
+SK_INLINE void skAdd3RGB(skColor& dest, const skColor& a, const skColor& b, const skColor& c)
+{
+    // f(a,b,c) a + b + c
+    dest.r = a.r + b.r + c.r;
+    dest.g = a.g + b.g + c.g;
+    dest.b = a.b + b.b + c.b;
+}
+
+SK_INLINE void skAdd3RGB(skColor& dest, const skColor& a, const skColor& b, const skScalar& c)
+{
+    // f(a,b,c) a + b + c
+    dest.r = a.r + b.r + c;
+    dest.g = a.g + b.g + c;
+    dest.b = a.b + b.b + c;
+}
+
+SK_INLINE void skAvr3RGB(skColor& dest, const skColor& a, const skColor& b, const skColor& c)
+{
+    // f(a,b,c) a + b + c
+    dest.r = (a.r + b.r + c.r) * .333333f;
+    dest.g = (a.g + b.g + c.g) * .333333f;
+    dest.b = (a.b + b.b + c.b) * .333333f;
+}
 
 #endif  //_skColor_h_

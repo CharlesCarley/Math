@@ -98,6 +98,17 @@ void skColorUtils::convert(skColor& dst, const skColori& src)
     dst.a   = (skScalar)color.b[SK_A] * i255;
 }
 
+
+void skColorUtils::convert(skColori& dst, const SKubyte* src)
+{
+    skColorU color{};
+    color.b[SK_R] = src[SK_R];
+    color.b[SK_G] = src[SK_G];
+    color.b[SK_B] = src[SK_B];
+    color.b[SK_A] = src[SK_A];
+    dst           = color.i;
+}
+
 void skColorUtils::convert(skColor& dst, const skColorHSV& src)
 {
     // https://en.wikipedia.org/w/index.php?title=HSL_and_HSV&oldid=941280606
@@ -174,6 +185,37 @@ void skColorUtils::convert(skColor& dst, const SKubyte* src)
     dst.g = (skScalar)src[SK_G] * i255;
     dst.b = (skScalar)src[SK_B] * i255;
     dst.a = (skScalar)src[SK_A] * i255;
+}
+
+void skColorUtils::convert(SKubyte*& dst, const skScalar& src)
+{
+    skColorUF uf{};
+    uf.f      = src;
+    dst[SK_R] = uf.b[SK_R];
+    dst[SK_G] = uf.b[SK_G];
+    dst[SK_B] = uf.b[SK_B];
+    dst[SK_A] = uf.b[SK_A];
+}
+
+void skColorUtils::convert(SKubyte*& dst, const SKuint32& src)
+{
+    skColorU uf{};
+    uf.i      = src;
+    dst[SK_R] = uf.b[SK_R];
+    dst[SK_G] = uf.b[SK_G];
+    dst[SK_B] = uf.b[SK_B];
+    dst[SK_A] = uf.b[SK_A];
+}
+
+void skColorUtils::convert(skColor& dst, const skScalar& src)
+{
+    skColorUF uf{};
+    uf.f = src;
+
+    dst.r = (skScalar)uf.b[SK_R] * i255;
+    dst.g = (skScalar)uf.b[SK_G] * i255;
+    dst.b = (skScalar)uf.b[SK_B] * i255;
+    dst.a = (skScalar)uf.b[SK_A] * i255;
 }
 
 void skColorUtils::convert(skColorHSV& dst, const skColor& src)

@@ -68,12 +68,7 @@ public:
             x = y = z = 0;
     }
 
-    skVector3(const skVector3& v) :
-        x(v.x),
-        y(v.y),
-        z(v.z)
-    {
-    }
+    skVector3(const skVector3& v) = default;
 
     SK_INLINE skScalar* ptr(void)
     {
@@ -119,6 +114,25 @@ public:
         y += v.y;
         z += v.z;
         return *this;
+    }
+
+    static void majorAxis(skVector3& dest, const skVector3& src)
+    {
+        const skScalar m = skMax3(src.x, src.y, src.z);
+
+        if (skEq(m, src.x))
+            dest = UnitX;
+        else if (skEq(m, src.y))
+            dest = UnitY;
+        else
+            dest = UnitZ;
+    }
+
+    skVector3 majorAxis() const
+    {
+        skVector3 result;
+        majorAxis(result, *this);
+        return result;
     }
 
     SK_INLINE skVector3 operator-(skScalar v) const

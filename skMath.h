@@ -117,6 +117,7 @@ SK_INLINE bool skEqT(skScalar x, skScalar y, skScalar tol)
 }
 
 const skScalar skPi     = skScalar(4.0 * skATan(1.0));
+const skScalar skPi4    = skScalar(4.0) * skPi;
 const skScalar skPi2    = skScalar(2.0) * skPi;
 const skScalar skPiH    = skScalar(0.5) * skPi;            // 90
 const skScalar skPiO3   = skScalar(skPi) / skScalar(3.0);  // 60

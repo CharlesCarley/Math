@@ -39,7 +39,7 @@ typedef union skColorU
 typedef union skColorUF
 {
     unsigned char b[4];
-    float f;
+    float         f;
 } skColorUF;
 
 class skColorUtils
@@ -387,6 +387,7 @@ public:
     }
 
     void asInt8(SKuint8& vr, SKuint8& vg, SKuint8& vb, SKuint8& va) const;
+
     void asRGB888(SKuint8& vr, SKuint8& vg, SKuint8& vb) const;
 
     void print() const;
@@ -416,6 +417,7 @@ SK_INLINE void skLimitRGB(skColor& dest)
 
 SK_INLINE void skMixRGB(skColor& dest, const skColor& a, const skColor& b, skScalar t)
 {
+    // f(a,b,t) (1 - t)a + (t)b {0 <= t <= 1}
     const skScalar iT = 1 - t;
 
     dest.r = iT * a.r + t * b.r;

@@ -28,10 +28,7 @@ class skColor;
 class skVector3
 {
 public:
-    skVector3() :
-        x(0),
-        y(0),
-        z(0)
+    skVector3()
     {
     }
 

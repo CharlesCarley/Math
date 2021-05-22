@@ -27,9 +27,7 @@
 class skVector2
 {
 public:
-    skVector2() :
-        x(0),
-        y(0)
+    skVector2()
     {
     }
 
@@ -45,11 +43,7 @@ public:
     {
     }
 
-    skVector2(const skVector2& v) :
-        x(v.x),
-        y(v.y)
-    {
-    }
+    skVector2(const skVector2& v) = default;
 
     SK_INLINE skScalar* ptr(void)
     {

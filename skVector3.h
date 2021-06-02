@@ -248,6 +248,11 @@ public:
             x * v.y - y * v.x);
     }
 
+    SK_INLINE skScalar max3() const
+    {
+        return skMax3(x, y, z);
+    }
+
     void normalize(void)
     {
         const skScalar mag = length();

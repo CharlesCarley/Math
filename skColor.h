@@ -170,6 +170,15 @@ public:
         a = _a;
     }
 
+    void setMonochrome(skScalar _c, skScalar _a = skScalar(1.0))
+    {
+        r = _c;
+        g = _c;
+        b = _c;
+        a = _a;
+    }
+
+
     void setUb(SKubyte _r, SKubyte _g, SKubyte _b, SKubyte _a = 255)
     {
         r = skScalar(_r) * skColorUtils::i255;
@@ -238,6 +247,13 @@ public:
         g = skClamp<skScalar>(g, 0, 1);
         b = skClamp<skScalar>(b, 0, 1);
         a = skClamp<skScalar>(a, 0, 1);
+    }
+
+    void invertRGB(void)
+    {
+        r = 1 - r;
+        g = 1 - g;
+        b = 1 - b;
     }
 
     skColor limit(void) const

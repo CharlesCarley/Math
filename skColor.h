@@ -178,7 +178,6 @@ public:
         a = _a;
     }
 
-
     void setUb(SKubyte _r, SKubyte _g, SKubyte _b, SKubyte _a = 255)
     {
         r = skScalar(_r) * skColorUtils::i255;
@@ -498,6 +497,14 @@ SK_INLINE void skAdd3RGB(skColor& dest, const skColor& a, const skColor& b, cons
     dest.r = a.r + b.r + c;
     dest.g = a.g + b.g + c;
     dest.b = a.b + b.b + c;
+}
+
+SK_INLINE void skSubRGB(skColor& dest, const skColor& a, const skScalar& c)
+{
+    // f(a,b) a - b
+    dest.r = a.r - c;
+    dest.g = a.g - c;
+    dest.b = a.b - c;
 }
 
 SK_INLINE void skAvr3RGB(skColor& dest, const skColor& a, const skColor& b, const skColor& c)

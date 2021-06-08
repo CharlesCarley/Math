@@ -155,7 +155,7 @@ public:
         skColorUtils::convert(*this, color);
     }
 
-    operator skColori(void) const
+    operator skColori() const
     {
         skColori i;
         skColorUtils::convert(i, *this);
@@ -233,14 +233,14 @@ public:
         skColorUtils::convert(*this, hsv);
     }
 
-    skColori asInt(void) const
+    skColori asInt() const
     {
         skColori i;
         skColorUtils::convert(i, *this);
         return i;
     }
 
-    void limit(void)
+    void limit()
     {
         r = skClamp<skScalar>(r, 0, 1);
         g = skClamp<skScalar>(g, 0, 1);
@@ -248,14 +248,30 @@ public:
         a = skClamp<skScalar>(a, 0, 1);
     }
 
-    void invertRGB(void)
+    void limit(skColor& d) const
+    {
+        const skScalar* srcPtr = ptr();
+        skScalar*       dstPtr = d.ptr();
+
+        for (int i = 0; i < 4; ++i)
+        {
+            if (srcPtr[i] < skScalar(0))
+                dstPtr[i] = 0;
+            else if (srcPtr[i] > skScalar(1))
+                dstPtr[i] = 1;
+            else
+                dstPtr[i] = srcPtr[i];
+        }
+    }
+
+    void invertRGB()
     {
         r = 1 - r;
         g = 1 - g;
         b = 1 - b;
     }
 
-    skColor limit(void) const
+    skColor limit() const
     {
         return skColor(
             skClamp<skScalar>(r, 0, 1),

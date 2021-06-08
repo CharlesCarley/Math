@@ -67,12 +67,12 @@ public:
 
     skVector3(const skVector3& v) = default;
 
-    SK_INLINE skScalar* ptr(void)
+    SK_INLINE skScalar* ptr()
     {
         return &x;
     }
 
-    SK_INLINE const skScalar* ptr(void) const
+    SK_INLINE const skScalar* ptr() const
     {
         return &x;
     }
@@ -158,7 +158,7 @@ public:
         return *this;
     }
 
-    SK_INLINE skVector3 operator-(void) const
+    SK_INLINE skVector3 operator-() const
     {
         return skVector3(-x, -y, -z);
     }
@@ -215,12 +215,12 @@ public:
         return *this;
     }
 
-    SK_INLINE skScalar length(void) const
+    SK_INLINE skScalar length() const
     {
         return skSqrt(length2());
     }
 
-    SK_INLINE skScalar length2(void) const
+    SK_INLINE skScalar length2() const
     {
         return x * x + y * y + z * z;
     }
@@ -253,21 +253,33 @@ public:
         return skMax3(x, y, z);
     }
 
-    void normalize(void)
+    void normalize()
     {
-        const skScalar mag = length();
-        if (mag > skScalar(0.0))
-            *this /= mag;
+        const skScalar sl = length2();
+        if (sl > skScalar(0.0))
+        {
+            skScalar rs;
+            skRSqrt(rs, sl);
+            x *= rs;
+            y *= rs;
+            z *= rs;
+        }
     }
 
-    skVector3 normalized(void) const
+    skVector3 normalized() const
     {
-        const skScalar mag = length();
-        if (mag > skScalar(0.0))
-            return skVector3(*this) / mag;
+        const skScalar sl = length2();
+        if (sl > skScalar(0.0))
+        {
+            skScalar rs;
+            skRSqrt(rs, sl);
+            return {x * rs, y * rs, z * rs};
+        }
+
         return Zero;
     }
-    void print(void) const;
+
+    void print() const;
 
     skScalar x, y, z;
 

@@ -70,6 +70,11 @@ SK_INLINE skScalar skSqu(const skScalar v)
     return v * v;
 }
 
+SK_INLINE void skRSqrt(skScalar& d, const skScalar& v)
+{
+    d = skScalar(1) / skSqrt(v);
+}
+
 SK_INLINE skScalar skIsInf(const skScalar v)
 {
     return skAbs(v) >= SK_INFINITY;
@@ -108,7 +113,7 @@ SK_INLINE bool skEq(skScalar x, skScalar y)
 
 SK_INLINE bool skNeq(skScalar x, skScalar y)
 {
-    return !skEq(x,y);
+    return !skEq(x, y);
 }
 
 SK_INLINE bool skEqT(skScalar x, skScalar y, skScalar tol)

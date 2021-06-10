@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -22,12 +22,12 @@
 #include "skRectangle.h"
 #include <cstdio>
 
-void skRectangle::print(void) const
+void skRectangle::print() const
 {
-    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", x, y, width, height);
+    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", (double)x, (double)y, (double)width, (double)height);
 }
 
-skRectangle& skRectangle::normalize(void)
+skRectangle& skRectangle::normalize()
 {
     if (!skIsZero(width) && !skIsZero(height))
     {
@@ -88,14 +88,12 @@ skRectangle& skRectangle::min(const skRectangle& oth)
     return *this;
 }
 
-skRectangle& skRectangle::makeMinMax(void)
+skRectangle& skRectangle::makeMinMax()
 {
-    skScalar x1, y1, x2, y2;
-
-    x1 = getLeft();
-    x2 = getRight();
-    y1 = getTop();
-    y2 = getBottom();
+    const skScalar x1 = getLeft();
+    const skScalar x2 = getRight();
+    const skScalar y1 = getTop();
+    const skScalar y2 = getBottom();
 
     x = skMin(x1, x2);
     y = skMin(y1, y2);

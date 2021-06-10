@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,9 +29,9 @@ const skVector3 skVector3::UnitY = skVector3(0, 1, 0);
 const skVector3 skVector3::UnitZ = skVector3(0, 0, 1);
 const skVector3 skVector3::Zero  = skVector3(0, 0, 0);
 
-void skVector3::print(void) const
+void skVector3::print() const
 {
-    printf("[%3.3f, %3.3f, %3.3f]\n", x, y, z);
+    printf("[%3.3f, %3.3f, %3.3f]\n", (double)x, (double)y, (double)z);
 }
 
 skVector3::skVector3(const skColor& col) :

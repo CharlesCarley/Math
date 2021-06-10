@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -25,9 +25,9 @@
 const skMatrix3 skMatrix3::Identity = skMatrix3(1, 0, 0, 0, 1, 0, 0, 0, 1);
 const skMatrix3 skMatrix3::Zero     = skMatrix3(0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-void skMatrix3::print(void) const
+void skMatrix3::print() const
 {
-    printf("[ %3.3f, %3.3f, %3.3f ]\n", m[0][0], m[0][1], m[0][2]);
-    printf("[ %3.3f, %3.3f, %3.3f ]\n", m[1][0], m[1][1], m[1][2]);
-    printf("[ %3.3f, %3.3f, %3.3f ]\n", m[2][0], m[2][1], m[2][2]);
+    printf("[ %3.3f, %3.3f, %3.3f ]\n", (double)m[0][0], (double)m[0][1], (double)m[0][2]);
+    printf("[ %3.3f, %3.3f, %3.3f ]\n", (double)m[1][0], (double)m[1][1], (double)m[1][2]);
+    printf("[ %3.3f, %3.3f, %3.3f ]\n", (double)m[2][0], (double)m[2][1], (double)m[2][2]);
 }

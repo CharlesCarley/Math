@@ -35,19 +35,19 @@ public:
     skRational(int n, int d);
     skRational(const skRational& oth);
 
-    skRational operator-(void) const;
+    skRational operator-() const;
 
-    explicit operator skScalar(void) const
+    explicit operator skScalar() const
     {
         if (d == 0)
             return (skScalar)(SK_INFINITY * 0);
         return (skScalar)n / (skScalar)d;
     }
 
-    int gcd(int a, int b);
+    static int gcd(int a, int b);
 
-    void reduce(void);
-    void print(void) const;
+    void reduce();
+    void print() const;
 };
 
 skRational operator-(const skRational& a, const skRational& b);

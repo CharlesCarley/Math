@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -24,9 +24,9 @@
 
 #include "skScalar.h"
 
-extern void     skRandInit(void);
-extern skScalar skUnitRand(void);
-extern skScalar skUnitNRand(void);
+extern void     skRandInit();
+extern skScalar skUnitRand();
+extern skScalar skUnitNRand();
 extern SKint32  skRandIntRange(SKint32 rmi, SKint32 rma);
 
 #endif  //_skRandom_h_

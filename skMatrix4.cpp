@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -27,12 +27,12 @@
 const skMatrix4 skMatrix4::Identity = skMatrix4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
 const skMatrix4 skMatrix4::Zero     = skMatrix4(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-void skMatrix4::print(void) const
+void skMatrix4::print() const
 {
-    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[0][0], m[0][1], m[0][2], m[0][3]);
-    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[1][0], m[1][1], m[1][2], m[1][3]);
-    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[2][0], m[2][1], m[2][2], m[2][3]);
-    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", m[3][0], m[3][1], m[3][2], m[3][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", (double)m[0][0], (double)m[0][1], (double)m[0][2], (double)m[0][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", (double)m[1][0], (double)m[1][1], (double)m[1][2], (double)m[1][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", (double)m[2][0], (double)m[2][1], (double)m[2][2], (double)m[2][3]);
+    printf("[ %3.3f, %3.3f, %3.3f, %3.3f ]\n", (double)m[3][0], (double)m[3][1], (double)m[3][2], (double)m[3][3]);
 }
 
 skMatrix4::skMatrix4(const skMatrix4& v)
@@ -207,13 +207,13 @@ void skMatrix4::merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b)
     d.m[3][3] = a.m[3][0] * b.m[0][3] + a.m[3][1] * b.m[1][3] + a.m[3][2] * b.m[2][3] + a.m[3][3] * b.m[3][3];
 }
 
-skMatrix4& skMatrix4::transpose(void)
+skMatrix4& skMatrix4::transpose()
 {
     *this = transposed();
     return *this;
 }
 
-skMatrix4 skMatrix4::transposed(void) const
+skMatrix4 skMatrix4::transposed() const
 {
     return skMatrix4(m[0][0], m[1][0], m[2][0], m[3][0], m[0][1], m[1][1], m[2][1], m[3][1], m[0][2], m[1][2], m[2][2], m[3][2], m[0][3], m[1][3], m[2][3], m[3][3]);
 }
@@ -250,17 +250,17 @@ void skMatrix4::setScale(skScalar x, skScalar y, skScalar z)
     m[3][3] = 1;
 }
 
-skVector3 skMatrix4::getTrans(void) const
+skVector3 skMatrix4::getTrans() const
 {
     return skVector3(m[0][3], m[1][3], m[2][3]);
 }
 
-skVector3 skMatrix4::getScale(void) const
+skVector3 skMatrix4::getScale() const
 {
     return skVector3(m[0][0], m[1][1], m[2][2]);
 }
 
-void skMatrix4::makeIdentity(void)
+void skMatrix4::makeIdentity()
 {
     m[0][0] = 1;
     m[0][1] = 0;

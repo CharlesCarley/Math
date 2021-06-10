@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -45,22 +45,17 @@ public:
 
     skVector2(const skVector2& v) = default;
 
-    SK_INLINE skScalar* ptr(void)
+    SK_INLINE skScalar* ptr()
     {
         return &x;
     }
 
-    SK_INLINE const skScalar* ptr(void) const
+    SK_INLINE const skScalar* ptr() const
     {
         return &x;
     }
 
-    SK_INLINE skVector2& operator=(const skVector2& v)
-    {
-        x = v.x;
-        y = v.y;
-        return *this;
-    }
+    skVector2& operator=(const skVector2& v) = default;
 
     SK_INLINE bool operator==(const skVector2& v) const
     {
@@ -145,7 +140,7 @@ public:
         return *this;
     }
 
-    SK_INLINE skVector2 operator-(void) const
+    SK_INLINE skVector2 operator-() const
     {
         return skVector2(-x, -y);
     }
@@ -213,12 +208,12 @@ public:
         return skVector2(l.x / r, l.y / r);
     }
 
-    SK_INLINE skScalar length(void) const
+    SK_INLINE skScalar length() const
     {
         return skSqrt(length2());
     }
 
-    SK_INLINE skScalar length2(void) const
+    SK_INLINE skScalar length2() const
     {
         return dot(*this);
     }
@@ -228,7 +223,7 @@ public:
         return x * v.x + y * v.y;
     }
 
-    SK_INLINE skVector2 abs(void) const
+    SK_INLINE skVector2 abs() const
     {
         return skVector2(skAbs(x), skAbs(y));
     }
@@ -243,29 +238,28 @@ public:
         return skVector2(x - v.x, y - v.y).length2();
     }
 
-    SK_INLINE skVector2 perpendicular(void) const
+    SK_INLINE skVector2 perpendicular() const
     {
         return skVector2(-y, x);
     }
 
-    SK_INLINE bool isZero(void) const
+    SK_INLINE bool isZero() const
     {
         return skIsZero(x) && skIsZero(y);
     }
 
-    void normalize(void)
+    void normalize()
     {
-        auto len = skSqrt(x * x + y * y);
-
-        if (skIsZero(len))
+        skScalar len = x * x + y * y;
+        if (len > SK_EPSILON)
         {
-            len = skScalar(1.0) / len;
+            len = skInvSqrt(len);
             x *= len;
             y *= len;
         }
     }
 
-    skVector2 normalized(void) const
+    skVector2 normalized() const
     {
         skVector2 v(x, y);
         v.normalize();
@@ -320,7 +314,7 @@ public:
     }
 
 
-    void print(void) const;
+    void print() const;
 
 public:
     skScalar x, y;

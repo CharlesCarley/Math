@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -256,7 +256,7 @@ public:
     void normalize()
     {
         const skScalar sl = length2();
-        if (sl > skScalar(0.0))
+        if (sl > SK_EPSILON)
         {
             skScalar rs;
             skRSqrt(rs, sl);
@@ -269,7 +269,7 @@ public:
     skVector3 normalized() const
     {
         const skScalar sl = length2();
-        if (sl > skScalar(0.0))
+        if (sl > SK_EPSILON)
         {
             skScalar rs;
             skRSqrt(rs, sl);

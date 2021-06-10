@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -22,7 +22,7 @@
 #include "skEuler.h"
 #include <cstdio>
 
-void skEuler::print(void) const
+void skEuler::print() const
 {
     printf("y %3.3f,  p %3.3f, r %3.3f\n", yaw, pitch, roll);
 }

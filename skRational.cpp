@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -92,7 +92,7 @@ skRational skRational::operator-() const
     return skRational(-n, d);
 }
 
-void skRational::print(void) const
+void skRational::print() const
 {
     if (d == 1)
         printf("%d\n", n);
@@ -138,6 +138,6 @@ skRational operator/(const skRational& a, const skRational& b)
         //DivisionByZero(a, b, std::cout);
         return skRational::Zero;
     }
-    skRational t(b.d, b.n);
-    return (a * t);
+    const skRational t(b.d, b.n);
+    return a * t;
 }

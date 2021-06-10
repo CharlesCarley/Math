@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -115,12 +115,12 @@ public:
                          m[2][0] * v.x + m[2][1] * v.y + m[2][2] * v.z);
     }
 
-    void transpose(void)
+    void transpose()
     {
         *this = transposed();
     }
 
-    skMatrix3 transposed(void) const
+    skMatrix3 transposed() const
     {
         return skMatrix3(m[0][0], m[1][0], m[2][0], m[0][1], m[1][1], m[2][1], m[0][2], m[1][2], m[2][2]);
     }
@@ -139,7 +139,7 @@ public:
         return skVector3::Zero;
     }
 
-    void makeIdentity(void)
+    void makeIdentity()
     {
         m[0][0] = 1;
         m[0][1] = 0;
@@ -220,7 +220,7 @@ public:
         m[2][2] = m4x4.m[2][2];
     }
 
-    void print(void) const;
+    void print() const;
 
 public:
     static const skMatrix3 Identity;

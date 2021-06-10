@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -31,7 +31,7 @@ public:
     static const skQuaternion Identity;
     static const skQuaternion Zero;
 
-    skScalar w{}, x{}, y{}, z{};
+    skScalar w, x, y, z;
 
 public:
     skQuaternion() = default;
@@ -64,7 +64,7 @@ public:
 
     skQuaternion(const skQuaternion& v) = default;
 
-    void makeIdentity(void)
+    void makeIdentity()
     {
         w = 1;
         x = y = z = 0;
@@ -99,11 +99,9 @@ public:
         x = y = 0;
     }
 
-
     skVector3 toAxis() const
     {
-
-        skScalar wSq = skScalar(1.0) - w*w;
+        skScalar wSq = skScalar(1.0) - w * w;
         if (wSq <= skScalar(0.0))
             return skVector3::UnitZ;
 
@@ -111,39 +109,47 @@ public:
         return skVector3(x * wSq, y * wSq, z * wSq);
     }
 
-    skScalar length(void) const
+    skScalar length() const
     {
         const skScalar len = length2();
         if (len > SK_EPSILON)
-            return skSqrt(length2());
+        {
+            return skSqrt(len);
+        }
         return skScalar(0.0);
     }
 
-    void normalize(void)
+    void normalize()
     {
-        const skScalar len = length2();
+        skScalar len = length2();
         if (len > SK_EPSILON)
-            *this *= skInvSqrt(length2());
+        {
+            len = skInvSqrt(len);
+            w *= len;
+            x *= len;
+            y *= len;
+            z *= len;
+        }
     }
 
-    skQuaternion normalized(void) const
+    skQuaternion normalized() const
     {
         skQuaternion q(w, x, y, z);
         q.normalize();
         return q;
     }
 
-    skQuaternion inverse(void) const
+    skQuaternion inverse() const
     {
         return skQuaternion(w, -x, -y, -z);
     }
 
-    skQuaternion operator-(void) const
+    skQuaternion operator-() const
     {
         return skQuaternion(w, -x, -y, -z);
     }
 
-    skQuaternion& invert(void)
+    skQuaternion& invert()
     {
         x = -x;
         y = -y;
@@ -186,8 +192,9 @@ public:
     skVector3 operator*(const skVector3& v) const
     {
         const skVector3 c(x, y, z);
-        skVector3       a = c.cross(v);
-        skVector3       b = c.cross(a);
+
+        skVector3 a = c.cross(v);
+        skVector3 b = c.cross(a);
         a *= skScalar(2) * w;
         b *= skScalar(2);
         return v + a + b;
@@ -223,22 +230,22 @@ public:
         return skNeq(x, v.x) && skNeq(y, v.y) && skNeq(z, v.z) && skNeq(w, v.w);
     }
 
-    SK_INLINE skScalar length2(void) const
+    SK_INLINE skScalar length2() const
     {
         return w * w + x * x + y * y + z * z;
     }
 
-    SK_INLINE skScalar* ptr(void)
+    SK_INLINE skScalar* ptr()
     {
         return &w;
     }
 
-    SK_INLINE const skScalar* ptr(void) const
+    SK_INLINE const skScalar* ptr() const
     {
         return &w;
     }
 
-    void print(void) const;
+    void print() const;
 };
 
 #endif  //_skQuaternion_h_

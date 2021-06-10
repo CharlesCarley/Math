@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -25,7 +25,7 @@
 const skQuaternion skQuaternion::Identity = skQuaternion(1, 0, 0, 0);
 const skQuaternion skQuaternion::Zero     = skQuaternion(0, 0, 0, 0);
 
-void skQuaternion::print(void) const
+void skQuaternion::print() const
 {
-    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", w, x, y, z);
+    printf("[%3.3f, %3.3f, %3.3f, %3.3f]\n", (double)w, (double)x, (double)y, (double)z);
 }

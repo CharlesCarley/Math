@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -54,14 +54,14 @@ public:
         roll = v.roll;
     }
 
-    void makeIdentity(void)
+    void makeIdentity()
     {
         pitch = 0.f;
         yaw = 0.f;
         roll = 0.f;
     }
 
-    void normalize(void)
+    void normalize()
     {
         pitch = skMath::wrap2Pi(pitch);
         if (pitch < -skPiH)
@@ -88,7 +88,7 @@ public:
         yaw = skMath::wrap2Pi(yaw);
     }
 
-    void print(void) const;
+    void print() const;
 };
 
 #endif//_skEuler_h_

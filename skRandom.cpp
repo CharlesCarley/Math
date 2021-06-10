@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -32,7 +32,7 @@
 #endif
 #undef max
 
-void skRandInit(void)
+void skRandInit()
 {
     long sRandVal = 0;
 
@@ -46,17 +46,17 @@ void skRandInit(void)
     srand(sRandVal);
 }
 
-skScalar skUnitRand(void)
+skScalar skUnitRand()
 {
     return skScalar(rand()) / skScalar(RAND_MAX);
 }
 
-skScalar skUnitNRand(void)
+skScalar skUnitNRand()
 {
     return skScalar(2.0) * skUnitRand() - skScalar(1.0);
 }
 
 SKint32 skRandIntRange(SKint32 rmi, SKint32 rma)
 {
-    return SKint32((skScalar(rma) - skScalar(rmi)) * skUnitRand() + rmi);
+    return SKint32((skScalar(rma) - skScalar(rmi)) * skUnitRand() + skScalar(rmi));
 }

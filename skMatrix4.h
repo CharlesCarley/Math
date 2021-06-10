@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -62,18 +62,18 @@ public:
 
     skMatrix4& operator=(const skMatrix4& v);
     skMatrix4  operator*(const skMatrix4& v) const;
-    skMatrix4& transpose(void);
-    skMatrix4  transposed(void) const;
+    skMatrix4& transpose();
+    skMatrix4  transposed() const;
 
     void      setTrans(const skVector3& v);
     void      setTrans(skScalar x, skScalar y, skScalar z);
     void      setScale(const skVector3& v);
     void      setScale(skScalar x, skScalar y, skScalar z);
-    skVector3 getScale(void) const;
-    skVector3 getTrans(void) const;
-    void      makeIdentity(void);
-    skScalar  det(void) const;
-    skMatrix4 inverted(void) const;
+    skVector3 getScale() const;
+    skVector3 getTrans() const;
+    void      makeIdentity();
+    skScalar  det() const;
+    skMatrix4 inverted() const;
 
     void multAssign(const skMatrix4& a, const skMatrix4& b);
 
@@ -83,7 +83,7 @@ public:
     void        makeInverseTransform(const skVector3& loc, const skVector3& scale, const skMatrix3& rot);
     static void merge(skMatrix4& d, const skMatrix4& a, const skMatrix4& b);
 
-    void print(void) const;
+    void print() const;
 
 public:
     static const skMatrix4 Identity;

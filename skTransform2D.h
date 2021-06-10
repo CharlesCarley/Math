@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -29,13 +29,13 @@
 class skTransform2D
 {
 public:
-    skTransform2D()  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    skTransform2D() 
     {
         skScalar t[] = {0, 0, 0, 0, 0, 0, 0, 0};
         copy(t);
     }
 
-    skTransform2D(skScalar _xx,  // NOLINT(cppcoreguidelines-pro-type-member-init)
+    skTransform2D(skScalar _xx,  
                   skScalar _xy,
                   skScalar _tx,
                   skScalar _yx,

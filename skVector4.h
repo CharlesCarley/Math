@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -51,20 +51,14 @@ public:
     {
     }
 
-    skVector4(const skVector4& v) :
-        x(v.x),
-        y(v.y),
-        z(v.z),
-        w(v.w)
-    {
-    }
+    skVector4(const skVector4& v) = default;
 
-    SK_INLINE skScalar* ptr(void)
+    SK_INLINE skScalar* ptr()
     {
         return &x;
     }
 
-    SK_INLINE const skScalar* ptr(void) const
+    SK_INLINE const skScalar* ptr() const
     {
         return &x;
     }
@@ -79,7 +73,7 @@ public:
         return !skEq(x, v.x) && !skEq(y, v.y) && !skEq(z, v.z) && !skEq(w, v.w);
     }
 
-    void print(void) const;
+    void print() const;
 
     skScalar x, y, z, w;
 

@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -49,40 +49,34 @@ public:
     {
     }
 
-    skBoundingBox2D(const skBoundingBox2D& obb) :
-        x1(obb.x1),
-        y1(obb.y1),
-        x2(obb.x2),
-        y2(obb.y2)
-    {
-    }
+    skBoundingBox2D(const skBoundingBox2D& obb) = default;
 
-    SK_INLINE void clear(void)
+    SK_INLINE void clear()
     {
         *this = Identity;
     }
 
-    SK_INLINE skScalar xLength(void) const
+    SK_INLINE skScalar xLength() const
     {
         return x2 - x1;
     }
 
-    SK_INLINE skScalar yLength(void) const
+    SK_INLINE skScalar yLength() const
     {
         return y2 - y1;
     }
 
-    SK_INLINE skRectangle getRect(void) const
+    SK_INLINE skRectangle getRect() const
     {
         return skRectangle(x1, y1, x2 - x1, y2 - y1);
     }
 
-    SK_INLINE void normalize(void)
+    SK_INLINE void normalize()
     {
         getRect().makeMinMax().getBounds(x1, y1, x2, y2);
     }
 
-    SK_INLINE bool isValid(void) const
+    SK_INLINE bool isValid() const
     {
         return skAbs((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) < SK_EPSILON;
     }

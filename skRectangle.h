@@ -1,6 +1,6 @@
 /*
 -------------------------------------------------------------------------------
-    Copyright (c) 2012 Charles Carley.
+    Copyright (c) Charles Carley.
 
   This software is provided 'as-is', without any express or implied
   warranty. In no event will the authors be held liable for any damages
@@ -62,62 +62,54 @@ public:
     {
     }
 
-    skRectangle& operator=(const skRectangle& o)
-    {
-        x = o.x;
-        y = o.y;
+    skRectangle& operator=(const skRectangle& o) = default;
 
-        width  = o.width;
-        height = o.height;
-        return *this;
-    }
-
-    skVector2 getSize(void) const
+    skVector2 getSize() const
     {
         return skVector2(width, height);
     }
 
-    skVector2 getPosition(void) const
+    skVector2 getPosition() const
     {
         return skVector2(x, y);
     }
 
-    SK_INLINE skScalar hw(void) const
+    SK_INLINE skScalar hw() const
     {
         return width * skScalar(.5);
     }
 
-    SK_INLINE skScalar hh(void) const
+    SK_INLINE skScalar hh() const
     {
         return height * skScalar(.5);
     }
 
-    skScalar getWidth(void) const
+    skScalar getWidth() const
     {
         return width;
     }
 
-    SK_INLINE skScalar getHeight(void) const
+    SK_INLINE skScalar getHeight() const
     {
         return height;
     }
 
-    SK_INLINE skScalar getLeft(void) const
+    SK_INLINE skScalar getLeft() const
     {
         return x;
     }
 
-    SK_INLINE skScalar getRight(void) const
+    SK_INLINE skScalar getRight() const
     {
         return x + width;
     }
 
-    SK_INLINE skScalar getTop(void) const
+    SK_INLINE skScalar getTop() const
     {
         return y;
     }
 
-    SK_INLINE skScalar getBottom(void) const
+    SK_INLINE skScalar getBottom() const
     {
         return y + height;
     }
@@ -146,27 +138,27 @@ public:
         y = py;
     }
 
-    skVector2 getLeftTop(void) const
+    skVector2 getLeftTop() const
     {
         return skVector2(x, y);
     }
 
-    skVector2 getRightTop(void) const
+    skVector2 getRightTop() const
     {
         return skVector2(x + width, y);
     }
 
-    skVector2 getLeftBottom(void) const
+    skVector2 getLeftBottom() const
     {
         return skVector2(x, y + height);
     }
 
-    skVector2 getRightBottom(void) const
+    skVector2 getRightBottom() const
     {
         return skVector2(x + width, y + height);
     }
 
-    skVector2 getCenter(void) const
+    skVector2 getCenter() const
     {
         return skVector2(x + width / skScalar(2),
                          y + height / skScalar(2));
@@ -308,29 +300,29 @@ public:
 
     void setAbsoluteCorners(const skScalar& x1, const skScalar& y1, const skScalar& x2, const skScalar& y2);
 
-    SK_INLINE skScalar getAspect(void) const
+    SK_INLINE skScalar getAspect() const
     {
         return width / height;
     }
 
-    skScalar cx(void) const
+    skScalar cx() const
     {
         return x + width * skScalar(0.5);
     }
 
-    skScalar cy(void) const
+    skScalar cy() const
     {
         return y + height * skScalar(0.5);
     }
 
-    skVector2 center(void) const
+    skVector2 center() const
     {
         return skVector2(cx(), cy());
     }
 
-    skRectangle& makeMinMax(void);
+    skRectangle& makeMinMax();
 
-    skRectangle makeMinMaxCopy(void) const
+    skRectangle makeMinMaxCopy() const
     {
         skRectangle r = *this;
         r.makeMinMax();
@@ -364,7 +356,7 @@ public:
 
     skRectangle& max(const skRectangle& oth);
     skRectangle& min(const skRectangle& oth);
-    skRectangle& normalize(void);
+    skRectangle& normalize();
 
     SK_INLINE bool operator==(const skRectangle& rhs) const
     {
@@ -379,7 +371,7 @@ public:
         return !(skEq(x, rhs.x) && skEq(y, rhs.y) && skEq(width, rhs.width) && skEq(height, rhs.height));
     }
 
-    void print(void) const;
+    void print() const;
 };
 
 #endif  //_skRectangle_h_

@@ -65,9 +65,14 @@ SK_INLINE skScalar skAbs(const skScalar& v)
     return v < 0 ? -v : v;
 }
 
-SK_INLINE skScalar skSqu(const skScalar v)
+SK_INLINE skScalar skSqu(const skScalar& v)
 {
     return v * v;
+}
+
+SK_INLINE skScalar skSign(const skScalar& v)
+{
+    return v > 0 ? skScalar(1.) : skScalar(-1.);
 }
 
 SK_INLINE void skRSqrt(skScalar& d, const skScalar& v)

@@ -132,6 +132,15 @@ public:
         return result;
     }
 
+    skVector3 abs() const
+    {
+        return {
+            skAbs(x),
+            skAbs(y),
+            skAbs(z)
+        };
+    }
+
     SK_INLINE skVector3 operator-(skScalar v) const
     {
         return skVector3(x - v, y - v, z - v);

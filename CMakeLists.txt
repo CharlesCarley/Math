@@ -33,14 +33,16 @@ endif()
 
 set(Math_SRC
     skBoundingBox2D.cpp
-    skRational.cpp
     skColor.cpp
     skEuler.cpp
     skMath.cpp
     skMatrix3.cpp
     skMatrix4.cpp
+    skPlane.cpp
     skQuaternion.cpp
     skRandom.cpp
+    skRational.cpp
+    skRay.cpp
     skRectangle.cpp
     skTransform2D.cpp
     skVector2.cpp
@@ -50,19 +52,21 @@ set(Math_SRC
 
 set(Math_HDR
     skBoundingBox2D.h
-    skRational.h
     skColor.h
     skEuler.h
     skFoot.h
     skMath.h
     skMatrix3.h
     skMatrix4.h
+    skPlane.h
     skQuaternion.h
     skRandom.h
+    skRational.h
+    skRay.h
     skRectangle.h
     skScalar.h
-    skTransform2D.h
     skScreenTransform.h
+    skTransform2D.h
     skVector2.h
     skVector3.h
     skVector4.h

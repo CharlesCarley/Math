@@ -44,6 +44,7 @@
 #else
 #define skSqrt (skScalar) sqrtf
 #define skInvSqrt (skScalar)1.f / (skScalar)sqrtf
+#define skRSqrt (skScalar)1.f / (skScalar)sqrtf
 #define skFloor (skScalar) floorf
 #define skCeil (skScalar) ceilf
 #define skSin (skScalar) sinf
@@ -73,11 +74,6 @@ SK_INLINE skScalar skSqu(const skScalar& v)
 SK_INLINE skScalar skSign(const skScalar& v)
 {
     return v > 0 ? skScalar(1.) : skScalar(-1.);
-}
-
-SK_INLINE void skRSqrt(skScalar& d, const skScalar& v)
-{
-    d = skScalar(1) / skSqrt(v);
 }
 
 SK_INLINE skScalar skIsInf(const skScalar v)

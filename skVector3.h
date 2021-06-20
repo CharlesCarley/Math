@@ -137,8 +137,7 @@ public:
         return {
             skAbs(x),
             skAbs(y),
-            skAbs(z)
-        };
+            skAbs(z)};
     }
 
     SK_INLINE skVector3 operator-(skScalar v) const
@@ -267,8 +266,7 @@ public:
         const skScalar sl = length2();
         if (sl > SK_EPSILON)
         {
-            skScalar rs;
-            skRSqrt(rs, sl);
+            const skScalar rs = skRSqrt(sl);
             x *= rs;
             y *= rs;
             z *= rs;
@@ -280,8 +278,7 @@ public:
         const skScalar sl = length2();
         if (sl > SK_EPSILON)
         {
-            skScalar rs;
-            skRSqrt(rs, sl);
+            const skScalar rs = skRSqrt(sl);
             return {x * rs, y * rs, z * rs};
         }
 

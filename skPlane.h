@@ -61,7 +61,7 @@ public:
 
         // > 0 in < 0 out == 0 on
 
-        if (!skIsZero(kd))  // front surface
+        if (!skIsZero(kd)) 
         {
             t = (-kn + p0.length()) / kd;
             if (t >= limit.x && t <= limit.y)

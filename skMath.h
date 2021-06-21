@@ -112,6 +112,12 @@ SK_INLINE bool skEq(skScalar x, skScalar y)
     return skAbs(x - y) < SK_EPSILON;
 }
 
+SK_INLINE skScalar skClampf(const skScalar& v, const skScalar& vMin, const skScalar& vMax)
+{
+    return v < vMin ? vMin : v > vMax ? vMax : v;
+}
+
+
 SK_INLINE bool skNeq(skScalar x, skScalar y)
 {
     return !skEq(x, y);

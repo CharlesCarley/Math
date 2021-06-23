@@ -43,8 +43,7 @@
 #define skFmod (skScalar) fmod
 #else
 #define skSqrt (skScalar) sqrtf
-#define skInvSqrt (skScalar)1.f / (skScalar)sqrtf
-#define skRSqrt (skScalar)1.f / (skScalar)sqrtf
+#define skRSqrt(x) (powf((x), -0.5f))
 #define skFloor (skScalar) floorf
 #define skCeil (skScalar) ceilf
 #define skSin (skScalar) sinf
@@ -127,6 +126,7 @@ SK_INLINE bool skEqT(skScalar x, skScalar y, skScalar tol)
 {
     return skAbs(x - y) < tol;
 }
+
 
 const skScalar skPi     = skScalar(4.0 * skATan(1.0));
 const skScalar skPi4    = skScalar(4.0) * skPi;

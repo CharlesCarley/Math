@@ -253,7 +253,7 @@ public:
         skScalar len = x * x + y * y;
         if (len > SK_EPSILON)
         {
-            len = skInvSqrt(len);
+            len = skRSqrt(len);
             x *= len;
             y *= len;
         }

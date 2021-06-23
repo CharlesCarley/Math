@@ -124,7 +124,7 @@ public:
         skScalar len = length2();
         if (len > SK_EPSILON)
         {
-            len = skInvSqrt(len);
+            len = skRSqrt(len);
             w *= len;
             x *= len;
             y *= len;

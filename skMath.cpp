@@ -131,12 +131,13 @@ void skMath::view(skMatrix4& dest, const class skVector3& pos, const class skMat
 
 skScalar skMath::toMillimeters(const skScalar& deg)
 {
-    return skScalar(16) / skTan(deg * skPi / skScalar(360.0));
+    return skScalar(18) / skTan(deg * skPi / skScalar(360.0));
 }
 
 skScalar skMath::toFieldOfView(const skScalar& mm)
 {
-    return skScalar(360.0) * skATan(skScalar(16) / mm) / skPi * skRPD;
+    // https://www.desmos.com/calculator/abddq2oo1v
+    return skScalar(360.0) * skATan(skScalar(18) / mm) / skPi;
 }
 
 skScalar skMath::wrap2Pi(skScalar x)

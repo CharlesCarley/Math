@@ -136,7 +136,7 @@ skScalar skMath::toMillimeters(const skScalar& deg)
 
 skScalar skMath::toFieldOfView(const skScalar& mm)
 {
-    // https://www.desmos.com/calculator/abddq2oo1v
+    // https://www.desmos.com/calculator/aed6jmo0fx
     return skScalar(360.0) * skATan(skScalar(18) / mm) / skPi;
 }
 
